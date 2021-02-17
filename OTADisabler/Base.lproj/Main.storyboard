@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTADisabler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuD-bB-QTY">
+                                <rect key="frame" x="20" y="74" width="374" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="39"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTA: Enabled" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idt-qe-xQO">
+                                <rect key="frame" x="20" y="370.5" width="374" height="31.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xds-cB-GZE">
+                                <rect key="frame" x="160" y="470" width="94" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Disable"/>
+                                <connections>
+                                    <action selector="tappedBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S0Y-xb-udg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SYSTEM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fga-r5-rKQ">
+                                <rect key="frame" x="20" y="129" width="374" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="6Qw-H2-fZ3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="idt-qe-xQO" secondAttribute="trailing" constant="20" id="0Q8-R8-SfW"/>
+                            <constraint firstItem="zuD-bB-QTY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="E7H-v0-IrN"/>
+                            <constraint firstItem="zuD-bB-QTY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="N6T-hW-X8s"/>
+                            <constraint firstItem="xds-cB-GZE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jeO-Ag-CGI"/>
+                            <constraint firstItem="xds-cB-GZE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kQg-L8-urB"/>
+                            <constraint firstItem="xds-cB-GZE" firstAttribute="top" secondItem="idt-qe-xQO" secondAttribute="bottom" constant="23" id="lgW-zN-Ijk"/>
+                            <constraint firstItem="fga-r5-rKQ" firstAttribute="top" secondItem="zuD-bB-QTY" secondAttribute="bottom" constant="8" symbolic="YES" id="nQC-Kb-BXW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zuD-bB-QTY" secondAttribute="trailing" constant="20" id="om0-X8-lL1"/>
+                            <constraint firstItem="idt-qe-xQO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="rNX-fa-g3j"/>
+                            <constraint firstItem="fga-r5-rKQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="wW9-MR-TMA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fga-r5-rKQ" secondAttribute="trailing" constant="20" id="ylO-mq-6n6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="btn" destination="xds-cB-GZE" id="E3z-dT-zK9"/>
+                        <outlet property="status" destination="idt-qe-xQO" id="TGt-Zz-PSu"/>
+                        <outlet property="system" destination="fga-r5-rKQ" id="yav-5D-JTt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="13.043478260869566" y="88.392857142857139"/>
+        </scene>
+    </scenes>
+</document>

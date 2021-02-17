@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		95C2551725DACF1100CFF23E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C2551625DACF1100CFF23E /* UIKit.framework */; };
+		95C2555725DAD23800CFF23E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555325DAD23800CFF23E /* main.m */; };
+		95C2555825DAD23800CFF23E /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555225DAD23800CFF23E /* offsets.m */; };
+		95C2555925DAD23800CFF23E /* LibOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555525DAD23800CFF23E /* LibOffset.m */; };
+		95C2555A25DAD23800CFF23E /* support.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555425DAD23800CFF23E /* support.m */; };
+		95C2556C25DAD83600CFF23E /* rootless.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2551D25DACFDE00CFF23E /* rootless.m */; };
+		95C2556E25DAD84700CFF23E /* voucher_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552925DAD0B500CFF23E /* voucher_utils.c */; };
+		95C2556F25DAD84700CFF23E /* exploit_utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552E25DAD0B500CFF23E /* exploit_utilities.c */; };
+		95C2557025DAD84700CFF23E /* cicuta_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552425DAD0B500CFF23E /* cicuta_log.c */; };
+		95C2557125DAD84700CFF23E /* descriptors_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552625DAD0B500CFF23E /* descriptors_utils.c */; };
+		95C2557225DAD84700CFF23E /* cicuta_virosa.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552825DAD0B500CFF23E /* cicuta_virosa.c */; };
+		95C2557325DAD84700CFF23E /* fake_element_spray.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552525DAD0B500CFF23E /* fake_element_spray.c */; };
+		95C2557525DAD85200CFF23E /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2553925DAD14600CFF23E /* fishhook.c */; };
+		95C2557725DAD85800CFF23E /* BypassAntiDebugging.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2553B25DAD14600CFF23E /* BypassAntiDebugging.m */; };
+		D58A32FD25BD548200DCA5F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D58A32FC25BD548200DCA5F5 /* AppDelegate.m */; };
+		D58A330325BD548200DCA5F5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58A330225BD548200DCA5F5 /* ViewController.m */; };
+		D58A330625BD548200DCA5F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D58A330425BD548200DCA5F5 /* Main.storyboard */; };
+		D58A330825BD548500DCA5F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D58A330725BD548500DCA5F5 /* Assets.xcassets */; };
+		D58A330B25BD548500DCA5F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D58A330925BD548500DCA5F5 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		95C2551625DACF1100CFF23E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		95C2551C25DACFDE00CFF23E /* rootless.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rootless.h; sourceTree = "<group>"; };
+		95C2551D25DACFDE00CFF23E /* rootless.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rootless.m; sourceTree = "<group>"; };
+		95C2552325DAD0B500CFF23E /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		95C2552425DAD0B500CFF23E /* cicuta_log.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cicuta_log.c; sourceTree = "<group>"; };
+		95C2552525DAD0B500CFF23E /* fake_element_spray.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fake_element_spray.c; sourceTree = "<group>"; };
+		95C2552625DAD0B500CFF23E /* descriptors_utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = descriptors_utils.c; sourceTree = "<group>"; };
+		95C2552725DAD0B500CFF23E /* exploit_utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exploit_utilities.h; sourceTree = "<group>"; };
+		95C2552825DAD0B500CFF23E /* cicuta_virosa.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cicuta_virosa.c; sourceTree = "<group>"; };
+		95C2552925DAD0B500CFF23E /* voucher_utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = voucher_utils.c; sourceTree = "<group>"; };
+		95C2552A25DAD0B500CFF23E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		95C2552B25DAD0B500CFF23E /* cicuta_log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cicuta_log.h; sourceTree = "<group>"; };
+		95C2552C25DAD0B500CFF23E /* fake_element_spray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fake_element_spray.h; sourceTree = "<group>"; };
+		95C2552D25DAD0B500CFF23E /* voucher_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = voucher_utils.h; sourceTree = "<group>"; };
+		95C2552E25DAD0B500CFF23E /* exploit_utilities.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = exploit_utilities.c; sourceTree = "<group>"; };
+		95C2552F25DAD0B500CFF23E /* cicuta_virosa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cicuta_virosa.h; sourceTree = "<group>"; };
+		95C2553025DAD0B500CFF23E /* descriptors_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = descriptors_utils.h; sourceTree = "<group>"; };
+		95C2553825DAD14600CFF23E /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		95C2553925DAD14600CFF23E /* fishhook.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
+		95C2553A25DAD14600CFF23E /* fishhook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
+		95C2553B25DAD14600CFF23E /* BypassAntiDebugging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BypassAntiDebugging.m; sourceTree = "<group>"; };
+		95C2553C25DAD14600CFF23E /* BypassAntiDebugging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BypassAntiDebugging.h; sourceTree = "<group>"; };
+		95C2554D25DAD23800CFF23E /* support.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = support.h; sourceTree = "<group>"; };
+		95C2554E25DAD23800CFF23E /* mach_vm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mach_vm.h; sourceTree = "<group>"; };
+		95C2554F25DAD23800CFF23E /* LibOffset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibOffset.h; sourceTree = "<group>"; };
+		95C2555025DAD23800CFF23E /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		95C2555125DAD23800CFF23E /* offsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
+		95C2555225DAD23800CFF23E /* offsets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = offsets.m; sourceTree = "<group>"; };
+		95C2555325DAD23800CFF23E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		95C2555425DAD23800CFF23E /* support.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = support.m; sourceTree = "<group>"; };
+		95C2555525DAD23800CFF23E /* LibOffset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibOffset.m; sourceTree = "<group>"; };
+		95C2555625DAD23800CFF23E /* pwner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pwner.h; sourceTree = "<group>"; };
+		95C2556325DAD57D00CFF23E /* OTADisabler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OTADisabler.entitlements; sourceTree = "<group>"; };
+		D58A32F825BD548200DCA5F5 /* OTADisabler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OTADisabler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D58A32FB25BD548200DCA5F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D58A32FC25BD548200DCA5F5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D58A330125BD548200DCA5F5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D58A330225BD548200DCA5F5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D58A330525BD548200DCA5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D58A330725BD548500DCA5F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D58A330A25BD548500DCA5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D58A330C25BD548500DCA5F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D58A32F525BD548200DCA5F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95C2551725DACF1100CFF23E /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		95C2551525DACF1100CFF23E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95C2551625DACF1100CFF23E /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95C2551B25DACFDE00CFF23E /* postexploit */ = {
+			isa = PBXGroup;
+			children = (
+				95C2551C25DACFDE00CFF23E /* rootless.h */,
+				95C2551D25DACFDE00CFF23E /* rootless.m */,
+			);
+			path = postexploit;
+			sourceTree = "<group>";
+		};
+		95C2552225DAD0B500CFF23E /* exploit */ = {
+			isa = PBXGroup;
+			children = (
+				95C2552425DAD0B500CFF23E /* cicuta_log.c */,
+				95C2552B25DAD0B500CFF23E /* cicuta_log.h */,
+				95C2552825DAD0B500CFF23E /* cicuta_virosa.c */,
+				95C2552F25DAD0B500CFF23E /* cicuta_virosa.h */,
+				95C2552625DAD0B500CFF23E /* descriptors_utils.c */,
+				95C2553025DAD0B500CFF23E /* descriptors_utils.h */,
+				95C2552E25DAD0B500CFF23E /* exploit_utilities.c */,
+				95C2552725DAD0B500CFF23E /* exploit_utilities.h */,
+				95C2552525DAD0B500CFF23E /* fake_element_spray.c */,
+				95C2552C25DAD0B500CFF23E /* fake_element_spray.h */,
+				95C2552325DAD0B500CFF23E /* LICENSE */,
+				95C2552A25DAD0B500CFF23E /* README.md */,
+				95C2552925DAD0B500CFF23E /* voucher_utils.c */,
+				95C2552D25DAD0B500CFF23E /* voucher_utils.h */,
+			);
+			path = exploit;
+			sourceTree = "<group>";
+		};
+		95C2553525DAD14600CFF23E /* PatchDebugging */ = {
+			isa = PBXGroup;
+			children = (
+				95C2553C25DAD14600CFF23E /* BypassAntiDebugging.h */,
+				95C2553B25DAD14600CFF23E /* BypassAntiDebugging.m */,
+			);
+			path = PatchDebugging;
+			sourceTree = "<group>";
+		};
+		95C2553625DAD14600CFF23E /* fishhook */ = {
+			isa = PBXGroup;
+			children = (
+				95C2553925DAD14600CFF23E /* fishhook.c */,
+				95C2553A25DAD14600CFF23E /* fishhook.h */,
+				95C2553825DAD14600CFF23E /* LICENSE */,
+			);
+			path = fishhook;
+			sourceTree = "<group>";
+		};
+		D58A32EF25BD548200DCA5F5 = {
+			isa = PBXGroup;
+			children = (
+				D58A32FA25BD548200DCA5F5 /* OTADisabler */,
+				D58A32F925BD548200DCA5F5 /* Products */,
+				95C2551525DACF1100CFF23E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D58A32F925BD548200DCA5F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D58A32F825BD548200DCA5F5 /* OTADisabler.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D58A32FA25BD548200DCA5F5 /* OTADisabler */ = {
+			isa = PBXGroup;
+			children = (
+				95C2551B25DACFDE00CFF23E /* postexploit */,
+				95C2552225DAD0B500CFF23E /* exploit */,
+				95C2553525DAD14600CFF23E /* PatchDebugging */,
+				95C2553625DAD14600CFF23E /* fishhook */,
+				D58A32FB25BD548200DCA5F5 /* AppDelegate.h */,
+				D58A32FC25BD548200DCA5F5 /* AppDelegate.m */,
+				D58A330725BD548500DCA5F5 /* Assets.xcassets */,
+				D58A330C25BD548500DCA5F5 /* Info.plist */,
+				D58A330925BD548500DCA5F5 /* LaunchScreen.storyboard */,
+				95C2554F25DAD23800CFF23E /* LibOffset.h */,
+				95C2555525DAD23800CFF23E /* LibOffset.m */,
+				95C2554E25DAD23800CFF23E /* mach_vm.h */,
+				95C2555025DAD23800CFF23E /* main.h */,
+				95C2555325DAD23800CFF23E /* main.m */,
+				D58A330425BD548200DCA5F5 /* Main.storyboard */,
+				95C2555125DAD23800CFF23E /* offsets.h */,
+				95C2555225DAD23800CFF23E /* offsets.m */,
+				95C2556325DAD57D00CFF23E /* OTADisabler.entitlements */,
+				95C2555625DAD23800CFF23E /* pwner.h */,
+				95C2554D25DAD23800CFF23E /* support.h */,
+				95C2555425DAD23800CFF23E /* support.m */,
+				D58A330125BD548200DCA5F5 /* ViewController.h */,
+				D58A330225BD548200DCA5F5 /* ViewController.m */,
+			);
+			path = OTADisabler;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D58A32F725BD548200DCA5F5 /* OTADisabler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D58A331125BD548500DCA5F5 /* Build configuration list for PBXNativeTarget "OTADisabler" */;
+			buildPhases = (
+				D58A32F425BD548200DCA5F5 /* Sources */,
+				D58A32F525BD548200DCA5F5 /* Frameworks */,
+				D58A32F625BD548200DCA5F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OTADisabler;
+			productName = vnodebypass;
+			productReference = D58A32F825BD548200DCA5F5 /* OTADisabler.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D58A32F025BD548200DCA5F5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					D58A32F725BD548200DCA5F5 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+				};
+			};
+			buildConfigurationList = D58A32F325BD548200DCA5F5 /* Build configuration list for PBXProject "OTADisabler" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D58A32EF25BD548200DCA5F5;
+			productRefGroup = D58A32F925BD548200DCA5F5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D58A32F725BD548200DCA5F5 /* OTADisabler */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D58A32F625BD548200DCA5F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D58A330B25BD548500DCA5F5 /* LaunchScreen.storyboard in Resources */,
+				D58A330825BD548500DCA5F5 /* Assets.xcassets in Resources */,
+				D58A330625BD548200DCA5F5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D58A32F425BD548200DCA5F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95C2557125DAD84700CFF23E /* descriptors_utils.c in Sources */,
+				D58A330325BD548200DCA5F5 /* ViewController.m in Sources */,
+				D58A32FD25BD548200DCA5F5 /* AppDelegate.m in Sources */,
+				95C2556C25DAD83600CFF23E /* rootless.m in Sources */,
+				95C2557225DAD84700CFF23E /* cicuta_virosa.c in Sources */,
+				95C2555A25DAD23800CFF23E /* support.m in Sources */,
+				95C2556E25DAD84700CFF23E /* voucher_utils.c in Sources */,
+				95C2557025DAD84700CFF23E /* cicuta_log.c in Sources */,
+				95C2557525DAD85200CFF23E /* fishhook.c in Sources */,
+				95C2555925DAD23800CFF23E /* LibOffset.m in Sources */,
+				95C2556F25DAD84700CFF23E /* exploit_utilities.c in Sources */,
+				95C2557725DAD85800CFF23E /* BypassAntiDebugging.m in Sources */,
+				95C2555725DAD23800CFF23E /* main.m in Sources */,
+				95C2555825DAD23800CFF23E /* offsets.m in Sources */,
+				95C2557325DAD84700CFF23E /* fake_element_spray.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D58A330425BD548200DCA5F5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D58A330525BD548200DCA5F5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D58A330925BD548500DCA5F5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D58A330A25BD548500DCA5F5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D58A330F25BD548500DCA5F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=0",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D58A331025BD548500DCA5F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D58A331225BD548500DCA5F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OTADisabler/OTADisabler.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C5DGRFTNQP;
+				INFOPLIST_FILE = OTADisabler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichitaso.otadisablerapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D58A331325BD548500DCA5F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OTADisabler/OTADisabler.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C5DGRFTNQP;
+				INFOPLIST_FILE = OTADisabler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichitaso.otadisablerapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D58A32F325BD548200DCA5F5 /* Build configuration list for PBXProject "OTADisabler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D58A330F25BD548500DCA5F5 /* Debug */,
+				D58A331025BD548500DCA5F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D58A331125BD548500DCA5F5 /* Build configuration list for PBXNativeTarget "OTADisabler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D58A331225BD548500DCA5F5 /* Debug */,
+				D58A331325BD548500DCA5F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D58A32F025BD548200DCA5F5 /* Project object */;
+}
