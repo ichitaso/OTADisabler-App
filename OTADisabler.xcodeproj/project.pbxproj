@@ -3,12 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9507F5D725DE70E4002045E2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9521DECA25DD988D005E8A76 /* CoreFoundation.framework */; };
+		95211F0F25E001E30089F799 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95211F0E25E001E20089F799 /* SafariServices.framework */; };
+		9521DE6925DD6F3E005E8A76 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9521DE6825DD6F3E005E8A76 /* ViewController.m */; };
+		9521DE8D25DD8843005E8A76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9521DE8C25DD8843005E8A76 /* main.m */; };
+		9547771D25DEB8400060B390 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9547771C25DEB8400060B390 /* IOKit.framework */; };
+		9547774425DF02900060B390 /* BypassAntiDebugging.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2553B25DAD14600CFF23E /* BypassAntiDebugging.m */; };
+		9547774625DF02950060B390 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2553925DAD14600CFF23E /* fishhook.c */; };
+		955ACACA25E186A700753D50 /* libdimentio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CDDB7E25E0B747007CF4ED /* libdimentio.framework */; platformFilter = ios; };
+		955ACAD725E1874700753D50 /* libdimentio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CDDB7E25E0B747007CF4ED /* libdimentio.framework */; };
+		955ACAFB25E2456A00753D50 /* libdimentio.c in Sources */ = {isa = PBXBuildFile; fileRef = 9507F5C025DE6EB4002045E2 /* libdimentio.c */; };
+		955ACAFF25E2457F00753D50 /* libdimentio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CDDB7E25E0B747007CF4ED /* libdimentio.framework */; };
+		955ACB0C25E24AD900753D50 /* libdimentio.c in Sources */ = {isa = PBXBuildFile; fileRef = 9507F5C025DE6EB4002045E2 /* libdimentio.c */; };
+		9570C6D625E15A82006C1FF0 /* libdimentio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9507F5BD25DE6EB4002045E2 /* libdimentio.h */; };
 		95C2551725DACF1100CFF23E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C2551625DACF1100CFF23E /* UIKit.framework */; };
-		95C2555725DAD23800CFF23E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555325DAD23800CFF23E /* main.m */; };
 		95C2555825DAD23800CFF23E /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555225DAD23800CFF23E /* offsets.m */; };
 		95C2555925DAD23800CFF23E /* LibOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555525DAD23800CFF23E /* LibOffset.m */; };
 		95C2555A25DAD23800CFF23E /* support.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555425DAD23800CFF23E /* support.m */; };
@@ -19,16 +31,51 @@
 		95C2557125DAD84700CFF23E /* descriptors_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552625DAD0B500CFF23E /* descriptors_utils.c */; };
 		95C2557225DAD84700CFF23E /* cicuta_virosa.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552825DAD0B500CFF23E /* cicuta_virosa.c */; };
 		95C2557325DAD84700CFF23E /* fake_element_spray.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552525DAD0B500CFF23E /* fake_element_spray.c */; };
-		95C2557525DAD85200CFF23E /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2553925DAD14600CFF23E /* fishhook.c */; };
-		95C2557725DAD85800CFF23E /* BypassAntiDebugging.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2553B25DAD14600CFF23E /* BypassAntiDebugging.m */; };
+		95CDDB8E25E0B747007CF4ED /* libdimentioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDDB8D25E0B747007CF4ED /* libdimentioTests.m */; };
+		95CDDB9D25E0B89E007CF4ED /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9521DECA25DD988D005E8A76 /* CoreFoundation.framework */; };
+		95CDDB9E25E0B8AE007CF4ED /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9547771C25DEB8400060B390 /* IOKit.framework */; };
 		D58A32FD25BD548200DCA5F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D58A32FC25BD548200DCA5F5 /* AppDelegate.m */; };
-		D58A330325BD548200DCA5F5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58A330225BD548200DCA5F5 /* ViewController.m */; };
 		D58A330625BD548200DCA5F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D58A330425BD548200DCA5F5 /* Main.storyboard */; };
 		D58A330825BD548500DCA5F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D58A330725BD548500DCA5F5 /* Assets.xcassets */; };
 		D58A330B25BD548500DCA5F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D58A330925BD548500DCA5F5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		95CDDB8825E0B747007CF4ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D58A32F025BD548200DCA5F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95CDDB7D25E0B747007CF4ED;
+			remoteInfo = libdimentio;
+		};
+		95CDDB8A25E0B747007CF4ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D58A32F025BD548200DCA5F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D58A32F725BD548200DCA5F5;
+			remoteInfo = OTADisabler;
+		};
+		95CDDB9125E0B747007CF4ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D58A32F025BD548200DCA5F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95CDDB7D25E0B747007CF4ED;
+			remoteInfo = libdimentio;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		9507F5BD25DE6EB4002045E2 /* libdimentio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libdimentio.h; sourceTree = "<group>"; };
+		9507F5BE25DE6EB4002045E2 /* dimentio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dimentio.c; sourceTree = "<group>"; };
+		9507F5C025DE6EB4002045E2 /* libdimentio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libdimentio.c; sourceTree = "<group>"; };
+		95211F0E25E001E20089F799 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		95211F1525E00DAD0089F799 /* MobileGestalt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileGestalt.h; sourceTree = "<group>"; };
+		9521DE6725DD6F04005E8A76 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9521DE6825DD6F3E005E8A76 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9521DE8B25DD882C005E8A76 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		9521DE8C25DD8843005E8A76 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9521DECA25DD988D005E8A76 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		9547771C25DEB8400060B390 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = OTADisabler/IOKit.framework; sourceTree = "<group>"; };
 		95C2551625DACF1100CFF23E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		95C2551C25DACFDE00CFF23E /* rootless.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rootless.h; sourceTree = "<group>"; };
 		95C2551D25DACFDE00CFF23E /* rootless.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rootless.m; sourceTree = "<group>"; };
@@ -54,19 +101,20 @@
 		95C2554D25DAD23800CFF23E /* support.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = support.h; sourceTree = "<group>"; };
 		95C2554E25DAD23800CFF23E /* mach_vm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mach_vm.h; sourceTree = "<group>"; };
 		95C2554F25DAD23800CFF23E /* LibOffset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibOffset.h; sourceTree = "<group>"; };
-		95C2555025DAD23800CFF23E /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		95C2555125DAD23800CFF23E /* offsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
 		95C2555225DAD23800CFF23E /* offsets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = offsets.m; sourceTree = "<group>"; };
-		95C2555325DAD23800CFF23E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95C2555425DAD23800CFF23E /* support.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = support.m; sourceTree = "<group>"; };
 		95C2555525DAD23800CFF23E /* LibOffset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibOffset.m; sourceTree = "<group>"; };
-		95C2555625DAD23800CFF23E /* pwner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pwner.h; sourceTree = "<group>"; };
 		95C2556325DAD57D00CFF23E /* OTADisabler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OTADisabler.entitlements; sourceTree = "<group>"; };
+		95CDDB7E25E0B747007CF4ED /* libdimentio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libdimentio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95CDDB8025E0B747007CF4ED /* libdimentio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libdimentio.h; sourceTree = "<group>"; };
+		95CDDB8125E0B747007CF4ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95CDDB8625E0B747007CF4ED /* libdimentioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = libdimentioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		95CDDB8D25E0B747007CF4ED /* libdimentioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libdimentioTests.m; sourceTree = "<group>"; };
+		95CDDB8F25E0B747007CF4ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D58A32F825BD548200DCA5F5 /* OTADisabler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OTADisabler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D58A32FB25BD548200DCA5F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D58A32FC25BD548200DCA5F5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D58A330125BD548200DCA5F5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D58A330225BD548200DCA5F5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D58A330525BD548200DCA5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D58A330725BD548500DCA5F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D58A330A25BD548500DCA5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,20 +122,55 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		95CDDB7B25E0B747007CF4ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95CDDB9D25E0B89E007CF4ED /* CoreFoundation.framework in Frameworks */,
+				955ACAFF25E2457F00753D50 /* libdimentio.framework in Frameworks */,
+				95CDDB9E25E0B8AE007CF4ED /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95CDDB8325E0B747007CF4ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				955ACACA25E186A700753D50 /* libdimentio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D58A32F525BD548200DCA5F5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				955ACAD725E1874700753D50 /* libdimentio.framework in Frameworks */,
+				9507F5D725DE70E4002045E2 /* CoreFoundation.framework in Frameworks */,
 				95C2551725DACF1100CFF23E /* UIKit.framework in Frameworks */,
+				95211F0F25E001E30089F799 /* SafariServices.framework in Frameworks */,
+				9547771D25DEB8400060B390 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9507F5A825DE6EB4002045E2 /* dimentio */ = {
+			isa = PBXGroup;
+			children = (
+				9507F5BD25DE6EB4002045E2 /* libdimentio.h */,
+				9507F5BE25DE6EB4002045E2 /* dimentio.c */,
+				9507F5C025DE6EB4002045E2 /* libdimentio.c */,
+			);
+			path = dimentio;
+			sourceTree = "<group>";
+		};
 		95C2551525DACF1100CFF23E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95211F0E25E001E20089F799 /* SafariServices.framework */,
+				9547771C25DEB8400060B390 /* IOKit.framework */,
+				9521DECA25DD988D005E8A76 /* CoreFoundation.framework */,
 				95C2551625DACF1100CFF23E /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -142,10 +225,30 @@
 			path = fishhook;
 			sourceTree = "<group>";
 		};
+		95CDDB7F25E0B747007CF4ED /* libdimentio */ = {
+			isa = PBXGroup;
+			children = (
+				95CDDB8025E0B747007CF4ED /* libdimentio.h */,
+				95CDDB8125E0B747007CF4ED /* Info.plist */,
+			);
+			path = libdimentio;
+			sourceTree = "<group>";
+		};
+		95CDDB8C25E0B747007CF4ED /* libdimentioTests */ = {
+			isa = PBXGroup;
+			children = (
+				95CDDB8D25E0B747007CF4ED /* libdimentioTests.m */,
+				95CDDB8F25E0B747007CF4ED /* Info.plist */,
+			);
+			path = libdimentioTests;
+			sourceTree = "<group>";
+		};
 		D58A32EF25BD548200DCA5F5 = {
 			isa = PBXGroup;
 			children = (
 				D58A32FA25BD548200DCA5F5 /* OTADisabler */,
+				95CDDB7F25E0B747007CF4ED /* libdimentio */,
+				95CDDB8C25E0B747007CF4ED /* libdimentioTests */,
 				D58A32F925BD548200DCA5F5 /* Products */,
 				95C2551525DACF1100CFF23E /* Frameworks */,
 			);
@@ -155,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				D58A32F825BD548200DCA5F5 /* OTADisabler.app */,
+				95CDDB7E25E0B747007CF4ED /* libdimentio.framework */,
+				95CDDB8625E0B747007CF4ED /* libdimentioTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,10 +267,11 @@
 		D58A32FA25BD548200DCA5F5 /* OTADisabler */ = {
 			isa = PBXGroup;
 			children = (
-				95C2551B25DACFDE00CFF23E /* postexploit */,
+				9507F5A825DE6EB4002045E2 /* dimentio */,
 				95C2552225DAD0B500CFF23E /* exploit */,
-				95C2553525DAD14600CFF23E /* PatchDebugging */,
 				95C2553625DAD14600CFF23E /* fishhook */,
+				95C2553525DAD14600CFF23E /* PatchDebugging */,
+				95C2551B25DACFDE00CFF23E /* postexploit */,
 				D58A32FB25BD548200DCA5F5 /* AppDelegate.h */,
 				D58A32FC25BD548200DCA5F5 /* AppDelegate.m */,
 				D58A330725BD548500DCA5F5 /* Assets.xcassets */,
@@ -174,24 +280,72 @@
 				95C2554F25DAD23800CFF23E /* LibOffset.h */,
 				95C2555525DAD23800CFF23E /* LibOffset.m */,
 				95C2554E25DAD23800CFF23E /* mach_vm.h */,
-				95C2555025DAD23800CFF23E /* main.h */,
-				95C2555325DAD23800CFF23E /* main.m */,
+				9521DE8B25DD882C005E8A76 /* main.h */,
+				9521DE8C25DD8843005E8A76 /* main.m */,
 				D58A330425BD548200DCA5F5 /* Main.storyboard */,
 				95C2555125DAD23800CFF23E /* offsets.h */,
 				95C2555225DAD23800CFF23E /* offsets.m */,
 				95C2556325DAD57D00CFF23E /* OTADisabler.entitlements */,
-				95C2555625DAD23800CFF23E /* pwner.h */,
+				9521DE6725DD6F04005E8A76 /* ViewController.h */,
+				9521DE6825DD6F3E005E8A76 /* ViewController.m */,
+				95211F1525E00DAD0089F799 /* MobileGestalt.h */,
 				95C2554D25DAD23800CFF23E /* support.h */,
 				95C2555425DAD23800CFF23E /* support.m */,
-				D58A330125BD548200DCA5F5 /* ViewController.h */,
-				D58A330225BD548200DCA5F5 /* ViewController.m */,
 			);
 			path = OTADisabler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		95CDDB7925E0B747007CF4ED /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9570C6D625E15A82006C1FF0 /* libdimentio.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		95CDDB7D25E0B747007CF4ED /* libdimentio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95CDDB9925E0B747007CF4ED /* Build configuration list for PBXNativeTarget "libdimentio" */;
+			buildPhases = (
+				95CDDB7925E0B747007CF4ED /* Headers */,
+				95CDDB7A25E0B747007CF4ED /* Sources */,
+				95CDDB7B25E0B747007CF4ED /* Frameworks */,
+				95CDDB7C25E0B747007CF4ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libdimentio;
+			productName = libdimentio;
+			productReference = 95CDDB7E25E0B747007CF4ED /* libdimentio.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		95CDDB8525E0B747007CF4ED /* libdimentioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95CDDB9A25E0B747007CF4ED /* Build configuration list for PBXNativeTarget "libdimentioTests" */;
+			buildPhases = (
+				95CDDB8225E0B747007CF4ED /* Sources */,
+				95CDDB8325E0B747007CF4ED /* Frameworks */,
+				95CDDB8425E0B747007CF4ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				95CDDB8925E0B747007CF4ED /* PBXTargetDependency */,
+				95CDDB8B25E0B747007CF4ED /* PBXTargetDependency */,
+			);
+			name = libdimentioTests;
+			productName = libdimentioTests;
+			productReference = 95CDDB8625E0B747007CF4ED /* libdimentioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D58A32F725BD548200DCA5F5 /* OTADisabler */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D58A331125BD548500DCA5F5 /* Build configuration list for PBXNativeTarget "OTADisabler" */;
@@ -203,6 +357,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				95CDDB9225E0B747007CF4ED /* PBXTargetDependency */,
 			);
 			name = OTADisabler;
 			productName = vnodebypass;
@@ -217,6 +372,13 @@
 			attributes = {
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					95CDDB7D25E0B747007CF4ED = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					95CDDB8525E0B747007CF4ED = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = D58A32F725BD548200DCA5F5;
+					};
 					D58A32F725BD548200DCA5F5 = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -236,11 +398,27 @@
 			projectRoot = "";
 			targets = (
 				D58A32F725BD548200DCA5F5 /* OTADisabler */,
+				95CDDB7D25E0B747007CF4ED /* libdimentio */,
+				95CDDB8525E0B747007CF4ED /* libdimentioTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		95CDDB7C25E0B747007CF4ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95CDDB8425E0B747007CF4ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D58A32F625BD548200DCA5F5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,29 +432,64 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		95CDDB7A25E0B747007CF4ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				955ACAFB25E2456A00753D50 /* libdimentio.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		95CDDB8225E0B747007CF4ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95CDDB8E25E0B747007CF4ED /* libdimentioTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D58A32F425BD548200DCA5F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				95C2557125DAD84700CFF23E /* descriptors_utils.c in Sources */,
-				D58A330325BD548200DCA5F5 /* ViewController.m in Sources */,
 				D58A32FD25BD548200DCA5F5 /* AppDelegate.m in Sources */,
 				95C2556C25DAD83600CFF23E /* rootless.m in Sources */,
 				95C2557225DAD84700CFF23E /* cicuta_virosa.c in Sources */,
 				95C2555A25DAD23800CFF23E /* support.m in Sources */,
 				95C2556E25DAD84700CFF23E /* voucher_utils.c in Sources */,
+				9547774625DF02950060B390 /* fishhook.c in Sources */,
+				9521DE8D25DD8843005E8A76 /* main.m in Sources */,
+				9521DE6925DD6F3E005E8A76 /* ViewController.m in Sources */,
 				95C2557025DAD84700CFF23E /* cicuta_log.c in Sources */,
-				95C2557525DAD85200CFF23E /* fishhook.c in Sources */,
 				95C2555925DAD23800CFF23E /* LibOffset.m in Sources */,
+				9547774425DF02900060B390 /* BypassAntiDebugging.m in Sources */,
 				95C2556F25DAD84700CFF23E /* exploit_utilities.c in Sources */,
-				95C2557725DAD85800CFF23E /* BypassAntiDebugging.m in Sources */,
-				95C2555725DAD23800CFF23E /* main.m in Sources */,
 				95C2555825DAD23800CFF23E /* offsets.m in Sources */,
+				955ACB0C25E24AD900753D50 /* libdimentio.c in Sources */,
 				95C2557325DAD84700CFF23E /* fake_element_spray.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		95CDDB8925E0B747007CF4ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 95CDDB7D25E0B747007CF4ED /* libdimentio */;
+			targetProxy = 95CDDB8825E0B747007CF4ED /* PBXContainerItemProxy */;
+		};
+		95CDDB8B25E0B747007CF4ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D58A32F725BD548200DCA5F5 /* OTADisabler */;
+			targetProxy = 95CDDB8A25E0B747007CF4ED /* PBXContainerItemProxy */;
+		};
+		95CDDB9225E0B747007CF4ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 95CDDB7D25E0B747007CF4ED /* libdimentio */;
+			targetProxy = 95CDDB9125E0B747007CF4ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D58A330425BD548200DCA5F5 /* Main.storyboard */ = {
@@ -298,10 +511,119 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		95CDDB9525E0B747007CF4ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C5DGRFTNQP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OTADisabler",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = libdimentio/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichitaso.libdimentio;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		95CDDB9625E0B747007CF4ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C5DGRFTNQP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OTADisabler",
+				);
+				INFOPLIST_FILE = libdimentio/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichitaso.libdimentio;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		95CDDB9725E0B747007CF4ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C5DGRFTNQP;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = libdimentioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichitaso.libdimentioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OTADisabler.app/OTADisabler";
+			};
+			name = Debug;
+		};
+		95CDDB9825E0B747007CF4ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C5DGRFTNQP;
+				INFOPLIST_FILE = libdimentioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichitaso.libdimentioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OTADisabler.app/OTADisabler";
+			};
+			name = Release;
+		};
 		D58A330F25BD548500DCA5F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -333,8 +655,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -349,7 +673,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -361,6 +685,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -393,7 +718,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "RELEASE=1";
@@ -403,9 +731,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -420,11 +749,16 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C5DGRFTNQP;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = OTADisabler/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OTADisabler",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichitaso.otadisablerapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -443,11 +777,16 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C5DGRFTNQP;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = OTADisabler/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OTADisabler",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichitaso.otadisablerapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -460,6 +799,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		95CDDB9925E0B747007CF4ED /* Build configuration list for PBXNativeTarget "libdimentio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95CDDB9525E0B747007CF4ED /* Debug */,
+				95CDDB9625E0B747007CF4ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95CDDB9A25E0B747007CF4ED /* Build configuration list for PBXNativeTarget "libdimentioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95CDDB9725E0B747007CF4ED /* Debug */,
+				95CDDB9825E0B747007CF4ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D58A32F325BD548200DCA5F5 /* Build configuration list for PBXProject "OTADisabler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

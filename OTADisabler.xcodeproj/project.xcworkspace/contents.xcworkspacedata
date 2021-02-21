@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/ichitaso/Desktop/OTADisabler-App/OTADisabler.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
