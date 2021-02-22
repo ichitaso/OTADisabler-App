@@ -13,17 +13,17 @@
 #include "PatchDebugging/BypassAntiDebugging.h"
 #include "exploit/cicuta_virosa.h"
 #include "postexploit/rootless.h"
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
 #include <sys/stat.h>
 
-int main(int argc, char * argv[]) {
-    NSString * appDelegateClassName;
-    @autoreleasepool {
-        // Setup code that might create autoreleased objects goes here.
-        appDelegateClassName = NSStringFromClass([AppDelegate class]);
-    }
-    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
-}
+//int main(int argc, char * argv[]) {
+//    NSString * appDelegateClassName;
+//    @autoreleasepool {
+//        // Setup code that might create autoreleased objects goes here.
+//        appDelegateClassName = NSStringFromClass([AppDelegate class]);
+//    }
+//    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
+//}
 
 @implementation PatchEntry
 
@@ -122,7 +122,7 @@ char* permissions(char *file){
         return strerror(errno);
     }
 }*/
-/*
+
 __attribute__((constructor))
 static void initializer(void) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -135,56 +135,70 @@ static void initializer(void) {
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         [main presentViewController:alert animated:YES completion:^{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                start();
+                setgid(0);
+                uint32_t gid = getgid();
+                NSLog(@"getgid() returns %u\n", gid);
+                setuid(0);
+                uint32_t uid = getuid();
+                NSLog(@"getuid() returns %u\n", uid);
+                if (uid != 0 && gid != 0) {
+                    start();
+                }
 
-//                sleep(2);
-//                printf("Copy files...\n");
-//                NSURL *currentURL = [[[NSBundle mainBundle] bundleURL] URLByDeletingLastPathComponent];
-//                NSString *currentStr = [currentURL absoluteString];
-//                NSString *realPath = [currentStr stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-//
-//                NSString *appPath = [realPath stringByAppendingString:@"OTADisabler.app"];
-//
-//                NSString *bashStr = [appPath stringByAppendingString:@"/bash"];
-//                NSString *cmdStr = [appPath stringByAppendingString:@"/dimentio"];
-//                sleep(2);
-//                NSFileManager *manager = [NSFileManager defaultManager];
-//                [manager copyItemAtPath:bashStr toPath:@"/var/bash" error:nil];
-//                [manager copyItemAtPath:cmdStr toPath:@"/var/dimentio" error:nil];
-//                printf("Copy files Done!\n");
-//
-//                if ([manager fileExistsAtPath:@"/var/bash"] && [manager fileExistsAtPath:@"/var/dimentio"]) {
-//                    printf("Change files Permission...\n");
-//                    //system("chmod 2755 setgid");
-//                    //if (execute("setgid", "06755") != 1) exit(0);
-//                    //sleep(2);
-//                    //system("chmod 4755 setuid");
-//                    //if (execute("setuid", "06755") != 1) exit(0);
-//                    //sleep(2);
-//                    setuid(0);
-//                    if ((chdir("/")) < 0) {
-//                        printf("Not root!\n");
-//                    }
-//                    [manager setAttributes:@{NSFilePosixPermissions:@04755}
-//                              ofItemAtPath:@"/var/dimentio" error:nil];
-//
-//                    [manager setAttributes:@{NSFilePosixPermissions:@04755}
-//                              ofItemAtPath:@"/var/bash" error:nil];
-//
-//                    //system("chmod g+s /var/bash");
-//                    //system("chmod g+s /var/dimentio");
-//                    //chmod("/tmp/bash", 4755);
-//                    //chmod("/tmp/dimentio", 4755);
-//                    if (execute("/tmp/dimentio", "04755") != 1 || execute("/tmp/bash", "04755") != 1) {
-//                        printf("Change files Permission faild\n");
-//                    }
-//                    sleep(2);
-//                    NSLog(@"/var/dimentio:%s",permissions("/var/dimentio"));
-//                    chown("/var/bash", 0, 0);
-//                    chown("/var/dimentio", 0, 0);
-//
-//                    printf("Change files Permission Done!\n");
-//                }
+                /*sleep(2);
+                printf("Copy files...\n");
+                NSURL *currentURL = [[[NSBundle mainBundle] bundleURL] URLByDeletingLastPathComponent];
+                NSString *currentStr = [currentURL absoluteString];
+                NSString *realPath = [currentStr stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+
+                NSString *appPath = [realPath stringByAppendingString:@"OTADisabler.app"];
+
+                //NSString *bashStr = [appPath stringByAppendingString:@"/bash"];
+                NSString *cmdStr = [appPath stringByAppendingString:@"/dimentio"];
+                sleep(2);
+                NSFileManager *manager = [NSFileManager defaultManager];
+                if ([manager fileExistsAtPath:@"/var/root/dimentio"]) {
+                    Log(log_info, "remove /var/root/dimentio");
+                    [manager removeItemAtPath:@"/var/root/dimentio" error:nil];
+                }
+                [manager copyItemAtPath:cmdStr toPath:@"/var/root/dimentio" error:nil];
+                printf("Copy files Done!\n");
+
+                if ([manager fileExistsAtPath:@"/var/root/dimentio"]) {
+                    printf("Change files Permission...\n");
+                    //system("chmod 2755 setgid");
+                    //if (execute("setgid", "06755") != 1) exit(0);
+                    //sleep(2);
+                    //system("chmod 4755 setuid");
+                    //if (execute("setuid", "06755") != 1) exit(0);
+                    //sleep(2);
+                    setuid(0);
+                    if ((chdir("/")) < 0) {
+                        printf("Not root!\n");
+                    }
+                    [manager setAttributes:@{NSFilePosixPermissions:@0755}
+                              ofItemAtPath:@"/var/root/dimentio" error:nil];
+
+                    //[manager setAttributes:@{NSFilePosixPermissions:@04755}
+                    //          ofItemAtPath:@"/var/bash" error:nil];
+
+                    //system("chmod g+s /var/bash");
+                    //system("chmod g+s /var/dimentio");
+                    //chmod("/tmp/bash", 4755);
+                    //chmod("/tmp/dimentio", 4755);
+                    //if (execute("/tmp/dimentio", "04755") != 1 || execute("/tmp/bash", "04755") != 1) {
+                    //    printf("Change files Permission faild\n");
+                    //}
+                    sleep(2);
+                    //NSLog(@"/var/dimentio:%s",permissions("/var/dimentio"));
+                    //chown("/var/bash", 0, 0);
+                    chown("/var/root/dimentio", 0, 0);
+
+                    printf("Change files Permission Done!\n");
+
+                    system("/var/root/dimentio 0x1111111111111111");
+                    Log(log_info, "run dimentio 0x1111111111111111");
+                }*/
 
                 free(redeem_racers);
                 [alert dismissViewControllerAnimated:YES completion:^{}];
@@ -192,4 +206,3 @@ static void initializer(void) {
         }];
     });
 }
-*/

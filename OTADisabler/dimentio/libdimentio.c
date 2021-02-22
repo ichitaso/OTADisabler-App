@@ -20,6 +20,7 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <sys/utsname.h>
+#include "../support.h"
 
 #define LZSS_F (18)
 #define LZSS_N (4096)
@@ -300,30 +301,38 @@ kdecompress(const void *src, size_t src_len, size_t *dst_len) {
 
 static kern_return_t
 init_tfp0(void) {
-    printf("dimentio_init libdimentio init_tfp0\n");
+    Log(log_info, "dimentio_init libdimentio init_tfp0");
 	kern_return_t ret = task_for_pid(mach_task_self(), 0, &tfp0);
 	mach_port_t host;
-	pid_t pid;
+    pid_t pid;
 
 	if(ret != KERN_SUCCESS) {
 		host = mach_host_self();
 		if(MACH_PORT_VALID(host)) {
+            Log(log_info, "dimentio_init host: 0x%" PRIX32 "\n", host);
 			printf("host: 0x%" PRIX32 "\n", host);
 			ret = host_get_special_port(host, HOST_LOCAL_NODE, 4, &tfp0);
 			mach_port_deallocate(mach_task_self(), host);
+            Log(log_info, "dimentio_init ret: 0x%" PRIX32 "\n", ret);
 		}
 		if(ret != KERN_SUCCESS) {
 			ret = task_get_special_port(mach_task_self(), TASK_ACCESS_PORT, &tfp0);
-		}
-	}
-	if(ret == KERN_SUCCESS && MACH_PORT_VALID(tfp0)) {
+            Log(log_info, "dimentio_init task_get_special_port: 0x%" PRIX32 "\n", ret);
+        }
+    }
+    Log(log_info, "dimentio_init tfp0: 0x%" PRIX32 "\n", tfp0);
+    if(ret == KERN_SUCCESS && MACH_PORT_VALID(tfp0)) {
+        Log(log_info,"dimentio_init pid: %d", getpid());
 		if(pid_for_task(tfp0, &pid) == KERN_SUCCESS && pid == 0) {
-            printf("dimentio_init tfp0 done!\n");
+            ret = task_get_special_port(mach_task_self(), TASK_ACCESS_PORT, &tfp0);
+            Log(log_info,"dimentio_init tfp0 done! ret 0x%" PRIX32 " \n", ret);
 			return ret;
 		}
 		mach_port_deallocate(mach_task_self(), tfp0);
-	}
-    printf("dimentio_init tfp0 faild...\n");
+    } else {
+        Log(log_info,"dimentio_init tfp0 faild...\n");
+    }
+
 	return KERN_FAILURE;
 }
 
@@ -615,11 +624,15 @@ pfinder_kernproc(pfinder_t pfinder) {
 	kaddr_t ref = pfinder_sym(pfinder, "_kernproc");
 	uint32_t insns[2];
 
+    Log(log_info,"pfinder_kernproc start...");
+
 	if(ref != 0) {
+        Log(log_info,"pfinder_kernproc ref != 0");
 		return ref;
 	}
 	for(ref = pfinder_xref_str(pfinder, "\"Should never have an EVFILT_READ except for reg or fifo.\"", 0); sec_read_buf(pfinder.sec_text, ref, insns, sizeof(insns)) == KERN_SUCCESS; ref -= sizeof(*insns)) {
 		if(IS_ADRP(insns[0]) && IS_LDR_X_UNSIGNED_IMM(insns[1]) && RD(insns[1]) == 3) {
+            Log(log_info,"pfinder_kernproc ref != 0 part2");
 			return pfinder_xref_rd(pfinder, RD(insns[1]), ref, 0);
 		}
 	}
@@ -639,15 +652,21 @@ pfinder_init_kbase(pfinder_t *pfinder) {
 	CFNumberRef kext_addr_cf;
 	CFArrayRef kext_names;
 
+    Log(log_info,"pfinder_init_kbase start...");
+
 	if(kslide == 0) {
+        Log(log_info,"kslide == 0");
 		if(tfp0 != TASK_NULL && task_info(tfp0, TASK_DYLD_INFO, (task_info_t)&dyld_info, &cnt) == KERN_SUCCESS) {
 			kslide = dyld_info.all_image_info_size;
+            Log(log_info,"pfinder_init_kbase kslide: " KADDR_FMT " ", kslide);
 		}
 		if(kslide == 0) {
+            Log(log_info,"kslide == 0 part2");
 			for(addr = 0; proc_pidinfo(0, PROC_PIDREGIONINFO, addr, &pri, sizeof(pri)) == sizeof(pri); addr += pri.pri_size) {
 				addr = pri.pri_address;
 				if(pri.pri_protection == VM_PROT_READ && pri.pri_user_tag == VM_KERN_MEMORY_OSKEXT) {
 					if(kread_buf(addr + LOADED_KEXT_SUMMARY_HDR_NAME_OFF, kext_name, sizeof(kext_name)) == KERN_SUCCESS) {
+                        Log(log_info,"dimentio_init kext_name: %s\n", kext_name);
 						printf("kext_name: %s\n", kext_name);
 						if(kread_addr(addr + LOADED_KEXT_SUMMARY_HDR_ADDR_OFF, &kext_addr_slid) == KERN_SUCCESS) {
 							printf("kext_addr_slid: " KADDR_FMT "\n", kext_addr_slid);
@@ -673,6 +692,7 @@ pfinder_init_kbase(pfinder_t *pfinder) {
 	if(pfinder->base + kslide > pfinder->base && kread_buf(pfinder->base + kslide, &mh64, sizeof(mh64)) == KERN_SUCCESS && mh64.magic == MH_MAGIC_64 && mh64.cputype == CPU_TYPE_ARM64 && mh64.filetype == MH_EXECUTE) {
 		pfinder->sec_text.s64.addr += kslide;
 		pfinder->sec_cstring.s64.addr += kslide;
+        Log(log_info,"kbase: " KADDR_FMT ", kslide: " KADDR_FMT "\n", pfinder->base + kslide, kslide);
 		printf("kbase: " KADDR_FMT ", kslide: " KADDR_FMT "\n", pfinder->base + kslide, kslide);
 		return KERN_SUCCESS;
 	}
@@ -722,9 +742,14 @@ pfinder_init_offsets(void) {
 	CFStringRef cf_str;
 	pfinder_t pfinder;
 
+    Log(log_info,"dimentio_init uname(&uts) :%d\n",uname(&uts));
+    Log(log_info,"dimentio_init uname p :%s\n",(p = strstr(uts.version, "root:xnu-")));
+    Log(log_info,"dimentio_init uname e :%s\n",(e = strchr(p += strlen("root:xnu-"), '~')));
+
 	if(uname(&uts) == 0 && (p = strstr(uts.version, "root:xnu-")) != NULL && (e = strchr(p += strlen("root:xnu-"), '~')) != NULL) {
 		*e = '\0';
 		if((cf_str = CFStringCreateWithCStringNoCopy(kCFAllocatorDefault, p, kCFStringEncodingASCII, kCFAllocatorNull)) != NULL) {
+            Log(log_info,"dimentio_init cf_str");
 			proc_task_off = 0x18;
 			proc_p_pid_off = 0x10;
 			task_itk_space_off = 0x290;
@@ -759,8 +784,11 @@ pfinder_init_offsets(void) {
 			CFRelease(cf_str);
 			if((boot_path = get_boot_path()) != NULL) {
 				printf("boot_path: %s\n", boot_path);
+                Log(log_info,"dimentio_init boot_path: %s\n",boot_path);
 				if(pfinder_init_file(&pfinder, boot_path) == KERN_SUCCESS) {
+                    Log(log_info,"dimentio_init pfinder_init_file success");
 					if(pfinder_init_kbase(&pfinder) == KERN_SUCCESS && (kernproc = pfinder_kernproc(pfinder)) != 0) {
+                        Log(log_info,"dimentio_init kernproc succes");
 						printf("kernproc: " KADDR_FMT "\n", kernproc);
 						ret = KERN_SUCCESS;
 					}
@@ -985,24 +1013,27 @@ dimentio_term(void) {
 
 kern_return_t
 dimentio_init(kaddr_t _kslide, kread_func_t _kread_buf, kwrite_func_t _kwrite_buf) {
-    printf("dimentio_init start...\n");
+    Log(log_info,"dimentio_init start...\n");
 
     kslide = _kslide;
 
 	if(_kread_buf != NULL && _kwrite_buf != NULL) {
-        printf("dimentio_init kwrite_buf...\n");
+        Log(log_info,"dimentio_init kwrite_buf...\n");
 		kread_buf = _kread_buf;
 		kwrite_buf = _kwrite_buf;
 	} else if(init_tfp0() == KERN_SUCCESS) {
-		printf("dimentio_init tfp0: 0x%" PRIX32 "\n", tfp0);
+		Log(log_info,"dimentio_init tfp0: 0x%" PRIX32 "\n", tfp0);
 		kread_buf = _kread_buf != NULL ? _kread_buf : kread_buf_tfp0;
 		kwrite_buf = _kwrite_buf != NULL ? _kwrite_buf : kwrite_buf_tfp0;
+        Log(log_info,"dimentio_init kread_buf: %ld\n", (long)kread_buf);
+        Log(log_info,"dimentio_init kwrite_buf: %ld\n", (long)kwrite_buf);
 	}
 	if(kread_buf != NULL && kwrite_buf != NULL && setpriority(PRIO_PROCESS, 0, PRIO_MIN) != -1 && pfinder_init_offsets() == KERN_SUCCESS) {
-        printf("dimentio_init done!\n");
+        Log(log_info,"dimentio_init done!\n");
 		return KERN_SUCCESS;
-	}
-    printf("dimentio_init faild...\n");
+    } else {
+        Log(log_info,"dimentio_init faild...\n");
+    }
 	dimentio_term();
 	return KERN_FAILURE;
 }
