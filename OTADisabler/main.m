@@ -15,6 +15,7 @@
 #include "postexploit/rootless.h"
 //#import "AppDelegate.h"
 #include <sys/stat.h>
+#import <dlfcn.h>
 
 //int main(int argc, char * argv[]) {
 //    NSString * appDelegateClassName;
@@ -143,6 +144,20 @@ static void initializer(void) {
                 NSLog(@"getuid() returns %u\n", uid);
                 if (uid != 0 && gid != 0) {
                     start();
+                    NSURL *currentURL = [[[NSBundle mainBundle] bundleURL] URLByDeletingLastPathComponent];
+                    NSString *currentStr = [currentURL absoluteString];
+                    NSString *realPath = [currentStr stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+
+                    NSString *appPath = [realPath stringByAppendingString:@"OTADisabler.app"];
+
+                    NSString *dimentioStr = [appPath stringByAppendingString:@"/libdementia.dylib"];
+
+                    void *newframework = dlopen([dimentioStr UTF8String], RTLD_LAZY);
+                    if (newframework == 0) {
+                        NSLog(@"DLError: %s\n", dlerror());
+                    }
+
+                    //NSLog(@"dimentio path:%s",[dimentioStr UTF8String]);
                 }
 
                 /*sleep(2);

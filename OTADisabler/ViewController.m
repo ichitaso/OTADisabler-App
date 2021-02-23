@@ -231,31 +231,6 @@ bool vaildGenerator(NSString *generator) {
     return true;
 }
 
-NSString *getGenerator(NSString *generator) {
-    setgid(0);
-    uint32_t gid = getgid();
-    NSLog(@"getgid() returns %u\n", gid);
-    setuid(0);
-    uint32_t uid = getuid();
-    NSLog(@"getuid() returns %u\n", uid);
-
-    if (uid != 0 && gid != 0) return @"Not root";
-
-    if (dimentio_init(0, NULL, NULL) == KERN_SUCCESS) {
-        uint8_t entangled_nonce[CC_SHA384_DIGEST_LENGTH];
-        bool entangled;
-        uint64_t nonce;
-        NSNumber *nonceNumber = nil;
-        if (dimentio(&nonce, false, entangled_nonce, &entangled) == KERN_SUCCESS) {
-            NSLog(@"The currently generator is 0x%016" PRIX64 ".\n", nonce);
-            nonceNumber = [NSNumber numberWithUnsignedLongLong:nonce];
-            generator = [NSString stringWithFormat:@"Nonce: %@",[nonceNumber stringValue]];
-        }
-    }
-    sleep(1);
-    return generator ? generator : @"Nonce: Not Set Nonce";
-}
-
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -287,8 +262,7 @@ NSString *getGenerator(NSString *generator) {
             [self presentViewController:alert animated:YES completion:nil];
         }
         // Nonce Info
-        NSString *nonceStr = getGenerator(self.nonce.text);
-        self.nonce.text = nonceStr;
+        self.nonce.text = [self getGenerator];
         // System Info
         self.system2.text = systemStr;
     } else if (self.view.tag == 999) {
@@ -410,6 +384,31 @@ NSString *getGenerator(NSString *generator) {
     self.valueStr = textfield.text;
 }
 
+- (NSString *)getGenerator {
+    setgid(0);
+    uint32_t gid = getgid();
+    NSLog(@"getgid() returns %u\n", gid);
+    setuid(0);
+    uint32_t uid = getuid();
+    NSLog(@"getuid() returns %u\n", uid);
+
+    if (uid != 0 && gid != 0) return @"Status: Not root";
+
+    NSString *generator = nil;
+
+    if (dimentio_init(0, NULL, NULL) == KERN_SUCCESS) {
+        uint8_t entangled_nonce[CC_SHA384_DIGEST_LENGTH];
+        bool entangled;
+        uint64_t nonce;
+        if (dimentio(&nonce, false, entangled_nonce, &entangled) == KERN_SUCCESS) {
+            NSLog(@"The currently generator is 0x%016" PRIX64 ".\n", nonce);
+            generator = [NSString stringWithFormat:@"0x%llx", nonce];
+        }
+    }
+
+    return generator ? generator : @"Nonce: Not Set Nonce";
+}
+
 - (void)setValue {
     NSString *value = nil;
     if (!self.valueStr || [self.valueStr isEqualToString:@""]) {
@@ -441,9 +440,6 @@ NSString *getGenerator(NSString *generator) {
 
 - (void)setgenerator {
     // Nonce Info
-    NSString *nonceStr = getGenerator(self.nonce.text);
-    self.nonce.text = nonceStr;
-
     if (getuid() != 0) {
         setuid(0);
     }
@@ -452,44 +448,33 @@ NSString *getGenerator(NSString *generator) {
         printf("Can't set uid as 0.\n");
     }
 
-    if (dimentio_init(0, NULL, NULL) == KERN_SUCCESS) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         uint8_t entangled_nonce[CC_SHA384_DIGEST_LENGTH];
         bool entangled;
         uint64_t nonce;
-        if (dimentio(&nonce, false, entangled_nonce, &entangled) == KERN_SUCCESS) {
-            printf("The currently generator is 0x%016" PRIX64 ".\n", nonce);
-            if (entangled) {
-                printf("entangled_nonce: ");
-                for (size_t i = 0; i < MIN(sizeof(entangled_nonce), 32); ++i) {
-                    printf("%02" PRIX8, entangled_nonce[i]);
+        if (dimentio_init(0, NULL, NULL) == KERN_SUCCESS) {
+            char *generator = (char *)calloc(19, sizeof(char));
+            char *setnonce = (char *)[self.valueStr UTF8String];
+            strcpy(generator, setnonce);
+            sscanf(generator, "0x%016" PRIX64, &nonce);
+            free(generator);
+            if (dimentio(&nonce, true, entangled_nonce, &entangled) == KERN_SUCCESS) {
+                printf("Set nonce to 0x%016" PRIX64 "\n", nonce);
+                if (entangled) {
+                    printf("entangled_nonce: ");
+                    for (size_t i = 0; i < MIN(sizeof(entangled_nonce), 32); ++i) {
+                        printf("%02" PRIX8, entangled_nonce[i]);
+                    }
+                    putchar('\n');
                 }
-                putchar('\n');
             }
+            dimentio_term();
         }
-        dimentio_term();
-    }
-
-    uint8_t entangled_nonce[CC_SHA384_DIGEST_LENGTH];
-    bool entangled;
-    uint64_t nonce;
-    if (dimentio_init(0, NULL, NULL) == KERN_SUCCESS) {
-        char *generator = (char *)[self.valueStr UTF8String];
-        sscanf(generator, "0x%016" PRIx64, &nonce);
-        free(generator);
-        if (dimentio(&nonce, true, entangled_nonce, &entangled) == KERN_SUCCESS) {
-            printf("Set nonce to 0x%016" PRIX64 "\n", nonce);
-            if (entangled) {
-                printf("entangled_nonce: ");
-                for (size_t i = 0; i < MIN(sizeof(entangled_nonce), 32); ++i) {
-                    printf("%02" PRIX8, entangled_nonce[i]);
-                }
-                putchar('\n');
-            }
-        }
-        dimentio_term();
-    }
-    // Nonce Info
-    self.nonce.text = nonceStr;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Nonce Info
+            self.nonce.text = [self getGenerator];
+        });
+    });
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField*)textField {

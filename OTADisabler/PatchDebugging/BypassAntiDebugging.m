@@ -1,5 +1,5 @@
 #import "BypassAntiDebugging.h"
-#import "fishhook.h"
+#import "../fishhook/fishhook.h"
 #import <dlfcn.h>
 #import <sys/sysctl.h>
 

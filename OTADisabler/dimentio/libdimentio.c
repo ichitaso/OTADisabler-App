@@ -664,6 +664,7 @@ pfinder_init_kbase(pfinder_t *pfinder) {
             Log(log_info,"kslide == 0 part2");
 			for(addr = 0; proc_pidinfo(0, PROC_PIDREGIONINFO, addr, &pri, sizeof(pri)) == sizeof(pri); addr += pri.pri_size) {
 				addr = pri.pri_address;
+                Log(log_info,"addr " KADDR_FMT " ", addr);
 				if(pri.pri_protection == VM_PROT_READ && pri.pri_user_tag == VM_KERN_MEMORY_OSKEXT) {
 					if(kread_buf(addr + LOADED_KEXT_SUMMARY_HDR_NAME_OFF, kext_name, sizeof(kext_name)) == KERN_SUCCESS) {
                         Log(log_info,"dimentio_init kext_name: %s\n", kext_name);

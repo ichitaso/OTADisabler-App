@@ -67,3 +67,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 Payload
+*.sh
+control
+*.xml
