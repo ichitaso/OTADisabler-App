@@ -13,18 +13,8 @@
 #include "PatchDebugging/BypassAntiDebugging.h"
 #include "exploit/cicuta_virosa.h"
 #include "postexploit/rootless.h"
-//#import "AppDelegate.h"
 #include <sys/stat.h>
 #import <dlfcn.h>
-
-//int main(int argc, char * argv[]) {
-//    NSString * appDelegateClassName;
-//    @autoreleasepool {
-//        // Setup code that might create autoreleased objects goes here.
-//        appDelegateClassName = NSStringFromClass([AppDelegate class]);
-//    }
-//    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
-//}
 
 @implementation PatchEntry
 
@@ -76,53 +66,6 @@ int start() {
     return 0;
 }
 @end
-/*
-int execute(const char *prog, const char *arg);
-
-int execute(const char *prog, const char *arg)
-{
-  pid_t childpid;
-  int status;
-  char cmd[30];
-
-  snprintf(cmd, sizeof(cmd), "./%s", prog);
-
-  childpid = fork();
-  if (childpid == (pid_t) -1) {
-    return(-2);
-  } else if (childpid == 0) {
-    if (execl(cmd, prog, arg, NULL) == -1) {
-        exit(-2);
-    }
-    return(-2);    // Never reached
-  } else {
-    wait(&status);
-  }
-
-  return(WEXITSTATUS(status));
-}
-
-char* permissions(char *file){
-    struct stat st;
-    char *modeval = malloc(sizeof(char) * 9 + 1);
-    if(stat(file, &st) == 0){
-        mode_t perm = st.st_mode;
-        modeval[0] = (perm & S_IRUSR) ? 'r' : '-';
-        modeval[1] = (perm & S_IWUSR) ? 'w' : '-';
-        modeval[2] = (perm & S_IXUSR) ? 'x' : '-';
-        modeval[3] = (perm & S_IRGRP) ? 'r' : '-';
-        modeval[4] = (perm & S_IWGRP) ? 'w' : '-';
-        modeval[5] = (perm & S_IXGRP) ? 'x' : '-';
-        modeval[6] = (perm & S_IROTH) ? 'r' : '-';
-        modeval[7] = (perm & S_IWOTH) ? 'w' : '-';
-        modeval[8] = (perm & S_IXOTH) ? 'x' : '-';
-        modeval[9] = '\0';
-        return modeval;
-    }
-    else{
-        return strerror(errno);
-    }
-}*/
 
 __attribute__((constructor))
 static void initializer(void) {
@@ -144,77 +87,7 @@ static void initializer(void) {
                 NSLog(@"getuid() returns %u\n", uid);
                 if (uid != 0 && gid != 0) {
                     start();
-                    NSURL *currentURL = [[[NSBundle mainBundle] bundleURL] URLByDeletingLastPathComponent];
-                    NSString *currentStr = [currentURL absoluteString];
-                    NSString *realPath = [currentStr stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-
-                    NSString *appPath = [realPath stringByAppendingString:@"OTADisabler.app"];
-
-                    NSString *dimentioStr = [appPath stringByAppendingString:@"/libdementia.dylib"];
-
-                    void *newframework = dlopen([dimentioStr UTF8String], RTLD_LAZY);
-                    if (newframework == 0) {
-                        NSLog(@"DLError: %s\n", dlerror());
-                    }
-
-                    //NSLog(@"dimentio path:%s",[dimentioStr UTF8String]);
                 }
-
-                /*sleep(2);
-                printf("Copy files...\n");
-                NSURL *currentURL = [[[NSBundle mainBundle] bundleURL] URLByDeletingLastPathComponent];
-                NSString *currentStr = [currentURL absoluteString];
-                NSString *realPath = [currentStr stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-
-                NSString *appPath = [realPath stringByAppendingString:@"OTADisabler.app"];
-
-                //NSString *bashStr = [appPath stringByAppendingString:@"/bash"];
-                NSString *cmdStr = [appPath stringByAppendingString:@"/dimentio"];
-                sleep(2);
-                NSFileManager *manager = [NSFileManager defaultManager];
-                if ([manager fileExistsAtPath:@"/var/root/dimentio"]) {
-                    Log(log_info, "remove /var/root/dimentio");
-                    [manager removeItemAtPath:@"/var/root/dimentio" error:nil];
-                }
-                [manager copyItemAtPath:cmdStr toPath:@"/var/root/dimentio" error:nil];
-                printf("Copy files Done!\n");
-
-                if ([manager fileExistsAtPath:@"/var/root/dimentio"]) {
-                    printf("Change files Permission...\n");
-                    //system("chmod 2755 setgid");
-                    //if (execute("setgid", "06755") != 1) exit(0);
-                    //sleep(2);
-                    //system("chmod 4755 setuid");
-                    //if (execute("setuid", "06755") != 1) exit(0);
-                    //sleep(2);
-                    setuid(0);
-                    if ((chdir("/")) < 0) {
-                        printf("Not root!\n");
-                    }
-                    [manager setAttributes:@{NSFilePosixPermissions:@0755}
-                              ofItemAtPath:@"/var/root/dimentio" error:nil];
-
-                    //[manager setAttributes:@{NSFilePosixPermissions:@04755}
-                    //          ofItemAtPath:@"/var/bash" error:nil];
-
-                    //system("chmod g+s /var/bash");
-                    //system("chmod g+s /var/dimentio");
-                    //chmod("/tmp/bash", 4755);
-                    //chmod("/tmp/dimentio", 4755);
-                    //if (execute("/tmp/dimentio", "04755") != 1 || execute("/tmp/bash", "04755") != 1) {
-                    //    printf("Change files Permission faild\n");
-                    //}
-                    sleep(2);
-                    //NSLog(@"/var/dimentio:%s",permissions("/var/dimentio"));
-                    //chown("/var/bash", 0, 0);
-                    chown("/var/root/dimentio", 0, 0);
-
-                    printf("Change files Permission Done!\n");
-
-                    system("/var/root/dimentio 0x1111111111111111");
-                    Log(log_info, "run dimentio 0x1111111111111111");
-                }*/
-
                 free(redeem_racers);
                 [alert dismissViewControllerAnimated:YES completion:^{}];
             });

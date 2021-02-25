@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9507F5D725DE70E4002045E2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9521DECA25DD988D005E8A76 /* CoreFoundation.framework */; };
-		950EAB2225E3F1A900911547 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950EAB2125E3F1A900911547 /* IOKit.framework */; };
 		95211F0F25E001E30089F799 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95211F0E25E001E20089F799 /* SafariServices.framework */; };
 		9521DE6925DD6F3E005E8A76 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9521DE6825DD6F3E005E8A76 /* ViewController.m */; };
 		95B706B525E58701002DFE70 /* cicuta_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 95C2552425DAD0B500CFF23E /* cicuta_log.c */; };
@@ -23,8 +22,11 @@
 		95B706D025E5874E002DFE70 /* LibOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555525DAD23800CFF23E /* LibOffset.m */; };
 		95B706D325E58756002DFE70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9521DE8C25DD8843005E8A76 /* main.m */; };
 		95B706D625E58767002DFE70 /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555225DAD23800CFF23E /* offsets.m */; };
-		95B706DA25E587C4002DFE70 /* libdementia.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B706D925E587C4002DFE70 /* libdementia.dylib */; };
-		95B706DB25E587C4002DFE70 /* libdementia.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 95B706D925E587C4002DFE70 /* libdementia.dylib */; };
+		95B706E525E74303002DFE70 /* newpatch.c in Sources */ = {isa = PBXBuildFile; fileRef = 95B706DD25E74303002DFE70 /* newpatch.c */; };
+		95B706E625E74303002DFE70 /* instructions.c in Sources */ = {isa = PBXBuildFile; fileRef = 95B706DF25E74303002DFE70 /* instructions.c */; };
+		95B706E725E74303002DFE70 /* decoders.c in Sources */ = {isa = PBXBuildFile; fileRef = 95B706E025E74303002DFE70 /* decoders.c */; };
+		95B706E825E74303002DFE70 /* patchfinder64.c in Sources */ = {isa = PBXBuildFile; fileRef = 95B706E225E74303002DFE70 /* patchfinder64.c */; };
+		95B706ED25E7452B002DFE70 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B706EC25E7452B002DFE70 /* IOKit.framework */; };
 		95C2551725DACF1100CFF23E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C2551625DACF1100CFF23E /* UIKit.framework */; };
 		95C2555A25DAD23800CFF23E /* support.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C2555425DAD23800CFF23E /* support.m */; };
 		D58A32FD25BD548200DCA5F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D58A32FC25BD548200DCA5F5 /* AppDelegate.m */; };
@@ -33,25 +35,7 @@
 		D58A330B25BD548500DCA5F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D58A330925BD548500DCA5F5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		95B7068025E40F72002DFE70 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				95B706DB25E587C4002DFE70 /* libdementia.dylib in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		9507F5BD25DE6EB4002045E2 /* libdimentio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libdimentio.h; sourceTree = "<group>"; };
-		9507F5BE25DE6EB4002045E2 /* dimentio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dimentio.c; sourceTree = "<group>"; };
-		9507F5C025DE6EB4002045E2 /* libdimentio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libdimentio.c; sourceTree = "<group>"; };
-		950EAB2125E3F1A900911547 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = OTADisabler/IOKit.framework; sourceTree = "<group>"; };
 		95211F0E25E001E20089F799 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		95211F1525E00DAD0089F799 /* MobileGestalt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileGestalt.h; sourceTree = "<group>"; };
 		9521DE6725DD6F04005E8A76 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -60,12 +44,17 @@
 		9521DE8C25DD8843005E8A76 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9521DECA25DD988D005E8A76 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		958957F625E2D63600FA4D9A /* iokit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iokit.h; sourceTree = "<group>"; };
-		958957F725E2D72D00FA4D9A /* kutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kutils.h; sourceTree = "<group>"; };
-		958957F825E2D80700FA4D9A /* kmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kmem.h; sourceTree = "<group>"; };
-		95B7066A25E3F418002DFE70 /* IOKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = IOKit.tbd; path = Simulator/IOKit.framework/Versions/A/IOKit.tbd; sourceTree = "<group>"; };
-		95B7067625E40F72002DFE70 /* Libdimintio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Libdimintio.h; sourceTree = "<group>"; };
-		95B7067725E40F72002DFE70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95B706D925E587C4002DFE70 /* libdementia.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdementia.dylib; path = OTADisabler/Resources/libdementia.dylib; sourceTree = "<group>"; };
+		95AA70C825E78BF9000BED86 /* IOKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = IOKit.tbd; path = Simulator/IOKit.framework/Versions/A/IOKit.tbd; sourceTree = "<group>"; };
+		95B706DC25E74303002DFE70 /* mac_policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_policy.h; sourceTree = "<group>"; };
+		95B706DD25E74303002DFE70 /* newpatch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = newpatch.c; sourceTree = "<group>"; };
+		95B706DE25E74303002DFE70 /* instructions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instructions.h; sourceTree = "<group>"; };
+		95B706DF25E74303002DFE70 /* instructions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = instructions.c; sourceTree = "<group>"; };
+		95B706E025E74303002DFE70 /* decoders.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = decoders.c; sourceTree = "<group>"; };
+		95B706E125E74303002DFE70 /* patchfinder64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
+		95B706E225E74303002DFE70 /* patchfinder64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = patchfinder64.c; sourceTree = "<group>"; };
+		95B706E325E74303002DFE70 /* newpatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newpatch.h; sourceTree = "<group>"; };
+		95B706E425E74303002DFE70 /* decoders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decoders.h; sourceTree = "<group>"; };
+		95B706EC25E7452B002DFE70 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = OTADisabler/IOKit.framework; sourceTree = "<group>"; };
 		95C2551625DACF1100CFF23E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		95C2551C25DACFDE00CFF23E /* rootless.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rootless.h; sourceTree = "<group>"; };
 		95C2551D25DACFDE00CFF23E /* rootless.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rootless.m; sourceTree = "<group>"; };
@@ -113,39 +102,34 @@
 				9507F5D725DE70E4002045E2 /* CoreFoundation.framework in Frameworks */,
 				95C2551725DACF1100CFF23E /* UIKit.framework in Frameworks */,
 				95211F0F25E001E30089F799 /* SafariServices.framework in Frameworks */,
-				950EAB2225E3F1A900911547 /* IOKit.framework in Frameworks */,
-				95B706DA25E587C4002DFE70 /* libdementia.dylib in Frameworks */,
+				95B706ED25E7452B002DFE70 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9507F5A825DE6EB4002045E2 /* dimentio */ = {
+		9574E27C25E7A25E0065EC1E /* kairos */ = {
 			isa = PBXGroup;
 			children = (
-				9507F5BD25DE6EB4002045E2 /* libdimentio.h */,
-				9507F5C025DE6EB4002045E2 /* libdimentio.c */,
-				9507F5BE25DE6EB4002045E2 /* dimentio.c */,
+				95B706E025E74303002DFE70 /* decoders.c */,
+				95B706E425E74303002DFE70 /* decoders.h */,
+				95B706DF25E74303002DFE70 /* instructions.c */,
+				95B706DE25E74303002DFE70 /* instructions.h */,
+				95B706DC25E74303002DFE70 /* mac_policy.h */,
+				95B706DD25E74303002DFE70 /* newpatch.c */,
+				95B706E325E74303002DFE70 /* newpatch.h */,
+				95B706E225E74303002DFE70 /* patchfinder64.c */,
+				95B706E125E74303002DFE70 /* patchfinder64.h */,
 			);
-			path = dimentio;
-			sourceTree = "<group>";
-		};
-		95B7067525E40F72002DFE70 /* Libdimintio */ = {
-			isa = PBXGroup;
-			children = (
-				95B7067625E40F72002DFE70 /* Libdimintio.h */,
-				95B7067725E40F72002DFE70 /* Info.plist */,
-			);
-			path = Libdimintio;
+			path = kairos;
 			sourceTree = "<group>";
 		};
 		95C2551525DACF1100CFF23E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				95B706D925E587C4002DFE70 /* libdementia.dylib */,
-				95B7066A25E3F418002DFE70 /* IOKit.tbd */,
-				950EAB2125E3F1A900911547 /* IOKit.framework */,
+				95AA70C825E78BF9000BED86 /* IOKit.tbd */,
+				95B706EC25E7452B002DFE70 /* IOKit.framework */,
 				95211F0E25E001E20089F799 /* SafariServices.framework */,
 				9521DECA25DD988D005E8A76 /* CoreFoundation.framework */,
 				95C2551625DACF1100CFF23E /* UIKit.framework */,
@@ -206,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				D58A32FA25BD548200DCA5F5 /* OTADisabler */,
-				95B7067525E40F72002DFE70 /* Libdimintio */,
 				D58A32F925BD548200DCA5F5 /* Products */,
 				95C2551525DACF1100CFF23E /* Frameworks */,
 			);
@@ -223,7 +206,7 @@
 		D58A32FA25BD548200DCA5F5 /* OTADisabler */ = {
 			isa = PBXGroup;
 			children = (
-				9507F5A825DE6EB4002045E2 /* dimentio */,
+				9574E27C25E7A25E0065EC1E /* kairos */,
 				95C2552225DAD0B500CFF23E /* exploit */,
 				95C2553625DAD14600CFF23E /* fishhook */,
 				95C2553525DAD14600CFF23E /* PatchDebugging */,
@@ -245,8 +228,6 @@
 				958957F625E2D63600FA4D9A /* iokit.h */,
 				9521DE6725DD6F04005E8A76 /* ViewController.h */,
 				9521DE6825DD6F3E005E8A76 /* ViewController.m */,
-				958957F825E2D80700FA4D9A /* kmem.h */,
-				958957F725E2D72D00FA4D9A /* kutils.h */,
 				95211F1525E00DAD0089F799 /* MobileGestalt.h */,
 				95C2554D25DAD23800CFF23E /* support.h */,
 				95C2555425DAD23800CFF23E /* support.m */,
@@ -264,7 +245,6 @@
 				D58A32F425BD548200DCA5F5 /* Sources */,
 				D58A32F525BD548200DCA5F5 /* Frameworks */,
 				D58A32F625BD548200DCA5F5 /* Resources */,
-				95B7068025E40F72002DFE70 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -324,14 +304,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B706E825E74303002DFE70 /* patchfinder64.c in Sources */,
 				95B706C425E58729002DFE70 /* voucher_utils.c in Sources */,
 				95B706BE25E5871D002DFE70 /* exploit_utilities.c in Sources */,
 				95B706CA25E58737002DFE70 /* BypassAntiDebugging.m in Sources */,
 				D58A32FD25BD548200DCA5F5 /* AppDelegate.m in Sources */,
 				95C2555A25DAD23800CFF23E /* support.m in Sources */,
+				95B706E525E74303002DFE70 /* newpatch.c in Sources */,
+				95B706E625E74303002DFE70 /* instructions.c in Sources */,
 				95B706C125E58724002DFE70 /* fake_element_spray.c in Sources */,
 				95B706D025E5874E002DFE70 /* LibOffset.m in Sources */,
 				95B706BB25E58718002DFE70 /* descriptors_utils.c in Sources */,
+				95B706E725E74303002DFE70 /* decoders.c in Sources */,
 				95B706C725E58730002DFE70 /* fishhook.c in Sources */,
 				95B706CD25E5873F002DFE70 /* rootless.m in Sources */,
 				95B706D625E58767002DFE70 /* offsets.m in Sources */,

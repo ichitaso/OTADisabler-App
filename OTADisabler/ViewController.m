@@ -6,185 +6,88 @@
 //
 
 #import "ViewController.h"
-#import "libdimentio.h"
 #include <dlfcn.h>
 #import "MobileGestalt.h"
-//#import "iokit.h"
-//#import "kutils.h"
-//#import "kmem.h"
-//
-//#include <mach/mach.h>
-//
-//kern_return_t set_generator(const char *new_generator);
-//const char *get_generator(void);
-//kern_return_t unlock_nvram(void);
-//kern_return_t lock_nvram(void);
+#import "iokit.h"
+#include <mach/mach.h>
+#include "kairos/newpatch.h"
 
 #define VERSION @"v0.0.2~beta"
 #define PROFILE1 "/var/mobile/Library/Preferences/com.apple.MobileAsset.plist"
 #define IS_PAD ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
-//uint64_t iodtnvram_obj = 0x0;
-//uint64_t original_vtab = 0x0;
-//
-//kern_return_t set_generator(const char *new_generator)
-//{
-//    kern_return_t ret = KERN_SUCCESS;
-//
-//    const char *current_generator = get_generator();
-//    NSLog(@"got current generator: %s", current_generator);
-//
-//    if (current_generator != NULL)
-//    {
-//        if (strcmp(current_generator, new_generator) == 0)
-//        {
-//            NSLog(@"not setting new generator -- generator is already set");
-//            free((void *)current_generator);
-//            return KERN_SUCCESS;
-//        }
-//
-//        free((void *)current_generator);
-//    }
-//
-//    CFStringRef str = CFStringCreateWithCStringNoCopy(NULL, new_generator, kCFStringEncodingUTF8, kCFAllocatorNull);
-//    if (str == NULL)
-//    {
-//        NSLog(@"failed to allocate new CFStringRef");
-//        return KERN_FAILURE;
-//    }
-//
-//    CFMutableDictionaryRef dict = CFDictionaryCreateMutable(NULL, 0, &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-//    if (dict == NULL)
-//    {
-//        NSLog(@"failed to allocate new CFMutableDictionaryRef");
-//        return KERN_FAILURE;
-//    }
-//
-//    CFDictionarySetValue(dict, CFSTR("com.apple.System.boot-nonce"), str);
-//    CFRelease(str);
-//
-//    io_service_t nvram = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IODTNVRAM"));
-//    if (!MACH_PORT_VALID(nvram))
-//    {
-//        NSLog(@"failed to open IODTNVRAM service");
-//        return KERN_FAILURE;
-//    }
-//
-//    ret = IORegistryEntrySetCFProperties(nvram, dict);
-//
-//    return ret;
-//}
-//
-//const char *get_generator()
-//{
-//    kern_return_t ret = KERN_SUCCESS;
-//
-//    io_service_t nvram = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IODTNVRAM"));
-//    if (!MACH_PORT_VALID(nvram))
-//    {
-//        NSLog(@"failed to open IODTNVRAM service");
-//        return NULL;
-//    }
-//
-//    io_service_t apnonce = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("AppleMobileApNonce"));
-//    if (!MACH_PORT_VALID(apnonce))
-//    {
-//        NSLog(@"failed to open AppleMobileApNonce service");
-//        return NULL;
-//    }
-//
-//    io_string_t buffer;
-//    unsigned int len = 256;
-//    ret = IORegistryEntryGetProperty(nvram, "com.apple.System.boot-nonce", buffer, &len);
-//    if (ret != KERN_SUCCESS)
-//    {
-//        // Nonce is not set
-//        NSLog(@"nonce is not currently set");
-//        return NULL;
-//    }
-//
-//    return strdup(buffer);
-//}
-/*
-kern_return_t unlock_nvram()
-{
-    const uint64_t searchNVRAMProperty = 0x590;
-    const uint64_t getOFVariablePerm = 0x558;
+kern_return_t set_generator(const char *new_generator);
+const char *get_generator(void);
+struct iboot64_img iboot_in;
 
-    io_service_t iodtnvram_service = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IODTNVRAM"));
-    if (iodtnvram_service == MACH_PORT_NULL)
-    {
+uint64_t iodtnvram_obj = 0x0;
+uint64_t original_vtab = 0x0;
+
+kern_return_t set_generator(const char *new_generator) {
+    kern_return_t ret = KERN_SUCCESS;
+
+    const char *current_generator = get_generator();
+    NSLog(@"got current generator: %s", current_generator);
+
+    if (current_generator != NULL) {
+        if (strcmp(current_generator, new_generator) == 0) {
+            NSLog(@"not setting new generator -- generator is already set");
+            free((void *)current_generator);
+            return KERN_SUCCESS;
+        }
+        free((void *)current_generator);
+    }
+
+    CFStringRef str = CFStringCreateWithCStringNoCopy(NULL, new_generator, kCFStringEncodingUTF8, kCFAllocatorNull);
+    if (str == NULL) {
+        NSLog(@"failed to allocate new CFStringRef");
+        return KERN_FAILURE;
+    }
+
+    CFMutableDictionaryRef dict = CFDictionaryCreateMutable(NULL, 0, &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    if (dict == NULL) {
+        NSLog(@"failed to allocate new CFMutableDictionaryRef");
+        return KERN_FAILURE;
+    }
+
+    CFDictionarySetValue(dict, CFSTR("com.apple.System.boot-nonce"), str);
+    CFRelease(str);
+
+    io_service_t nvram = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IODTNVRAM"));
+    if (!MACH_PORT_VALID(nvram)) {
         NSLog(@"failed to open IODTNVRAM service");
         return KERN_FAILURE;
     }
 
-    uint64_t port_addr = find_port_address(iodtnvram_service);
-    if (port_addr == 0x0)
-    {
-        NSLog(@"failed to find IODTNVRAM port");
-        return KERN_FAILURE;
-    }
+    ret = IORegistryEntrySetCFProperties(nvram, dict);
 
-    iodtnvram_obj = rk64(port_addr + 0x68);
-    if (iodtnvram_obj == 0x0)
-    {
-        NSLog(@"failed ot read IODTNVRAM obj");
-        return KERN_FAILURE;
-    }
-
-    original_vtab = rk64(iodtnvram_obj);
-    if (original_vtab == 0x0)
-    {
-        NSLog(@"failed to find IODTNVRAM obj vtab");
-        return KERN_FAILURE;
-    }
-
-    const uint64_t vtab_size = 0x620;
-
-    uint64_t *vtab_buf = malloc(vtab_size);
-    kread(original_vtab, (void *)vtab_buf, vtab_size);
-
-    vtab_buf[getOFVariablePerm / sizeof(uint64_t)] = vtab_buf[searchNVRAMProperty / sizeof(uint64_t)];
-
-    uint64_t fake_vtable = kalloc(vtab_size);
-    kwrite(fake_vtable, (void *)vtab_buf, vtab_size);
-
-    // patch vtable
-    wk64(iodtnvram_obj, fake_vtable);
-
-    free((void *)vtab_buf);
-
-    NSLog(@"patched nvram checks");
-
-    return KERN_SUCCESS;
+    return ret;
 }
 
-kern_return_t lock_nvram()
-{
-    if (iodtnvram_obj == 0x0)
-    {
-        NSLog(@"failed to find iodtnvram_obj to lock down");
-        return KERN_FAILURE;
+const char *get_generator() {
+    kern_return_t ret = KERN_SUCCESS;
+
+    io_service_t nvram = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IODTNVRAM"));
+    if (!MACH_PORT_VALID(nvram)) {
+        NSLog(@"failed to open IODTNVRAM service");
+        return NULL;
     }
 
-    if (original_vtab == 0x0)
-    {
-        NSLog(@"failed to find original vtab to lock back down to");
-        return KERN_FAILURE;
+    io_string_t buffer;
+    unsigned int len = 256;
+    ret = IORegistryEntryGetProperty(nvram, "com.apple.System.boot-nonce", buffer, &len);
+    if (ret != KERN_SUCCESS) {
+        // Nonce is not set
+        NSLog(@"nonce is not currently set");
+        return NULL;
     }
 
-    wk64(iodtnvram_obj, original_vtab);
-
-    NSLog(@"locked down nvram");
-
-    return KERN_SUCCESS;
+    return strdup(buffer);
 }
-*/
+
 @interface ViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *system1;
-@property (weak, nonatomic) IBOutlet UILabel *system2;
-@property (weak, nonatomic) IBOutlet UILabel *system3;
+@property (weak, nonatomic) IBOutlet UILabel *system;
 @property (weak, nonatomic) IBOutlet UILabel *ecid;
 @property (weak, nonatomic) IBOutlet UILabel *status;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
@@ -239,9 +142,8 @@ bool vaildGenerator(NSString *generator) {
     // System info
     NSString *systemStr = [NSString stringWithFormat:@"%@ %@ %@ - %@",[[UIDeviceHardware alloc] platform],[[UIDevice currentDevice] systemName],[[UIDevice currentDevice] systemVersion],VERSION];
 
-    //void *gestalt = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_GLOBAL | RTLD_LAZY);
-    //$MGCopyAnswer = dlsym(gestalt, "MGCopyAnswer");
-    //CFStringRef ecid = (CFStringRef)$MGCopyAnswer(CFSTR("UniqueChipID"));
+    // System Info
+    self.system.text = systemStr;
 
     if (self.view.tag == 143) {
         self.textField.delegate = self;
@@ -263,13 +165,9 @@ bool vaildGenerator(NSString *generator) {
         }
         // Nonce Info
         self.nonce.text = [self getGenerator];
-        // System Info
-        self.system2.text = systemStr;
     } else if (self.view.tag == 999) {
         // ECID Section
         self.ecid.text = [NSString stringWithFormat:@"ECID: %@", [self ecidHexValue]];
-        // System Info
-        self.system3.text = systemStr;
     } else {
         if (access(PROFILE1, F_OK != 0)) {
             self.status.text = @"OTA: Enabled";
@@ -278,8 +176,6 @@ bool vaildGenerator(NSString *generator) {
             self.status.text = @"OTA: Disabled";
             [self.btn setTitle:@"Enable" forState:UIControlStateNormal];
         }
-        // System Info
-        self.system1.text = systemStr;
     }
 }
 
@@ -343,12 +239,10 @@ bool vaildGenerator(NSString *generator) {
         if (access(PROFILE1, F_OK != 0)) {
             self.status.text = @"OTA: Enabled";
             [sender setTitle:@"Disable" forState:UIControlStateNormal];
-        }
-        else {
+        } else {
             [sender setTitle:@"Failed" forState:UIControlStateNormal];
         }
-    }
-    else if ([sender.currentTitle isEqualToString:@"Disable"]) {
+    } else if ([sender.currentTitle isEqualToString:@"Disable"]) {
         NSLog(@"starting disable OTA...");
 
         [self performSelectorOnMainThread:@selector(disable) withObject:nil waitUntilDone:YES];
@@ -356,8 +250,7 @@ bool vaildGenerator(NSString *generator) {
         if (access(PROFILE1, F_OK == 0)) {
             self.status.text = @"OTA: Disabled";
             [sender setTitle:@"Enable" forState:UIControlStateNormal];
-        }
-        else {
+        } else {
             [sender setTitle:@"Failed" forState:UIControlStateNormal];
         }
     }
@@ -385,10 +278,8 @@ bool vaildGenerator(NSString *generator) {
 }
 
 - (NSString *)getGenerator {
-    setgid(0);
     uint32_t gid = getgid();
     NSLog(@"getgid() returns %u\n", gid);
-    setuid(0);
     uint32_t uid = getuid();
     NSLog(@"getuid() returns %u\n", uid);
 
@@ -396,17 +287,11 @@ bool vaildGenerator(NSString *generator) {
 
     NSString *generator = nil;
 
-    if (dimentio_init(0, NULL, NULL) == KERN_SUCCESS) {
-        uint8_t entangled_nonce[CC_SHA384_DIGEST_LENGTH];
-        bool entangled;
-        uint64_t nonce;
-        if (dimentio(&nonce, false, entangled_nonce, &entangled) == KERN_SUCCESS) {
-            NSLog(@"The currently generator is 0x%016" PRIX64 ".\n", nonce);
-            generator = [NSString stringWithFormat:@"0x%llx", nonce];
-        }
+    if (get_generator()) {
+        generator = [NSString stringWithCString:get_generator() encoding:NSUTF8StringEncoding];
     }
 
-    return generator ? generator : @"Nonce: Not Set Nonce";
+    return generator ? [NSString stringWithFormat:@"Nonce: %@", generator] : @"Nonce: Not Set Nonce";
 }
 
 - (void)setValue {
@@ -417,10 +302,22 @@ bool vaildGenerator(NSString *generator) {
         value = self.valueStr;
     }
 
+    self.valueStr = value;
+
     [self.view endEditing:YES];
 
     if (!vaildGenerator(value)) {
-        [self presentViewController:alert(@"setgenerator", [NSString stringWithFormat:@"Wrong generator \"%@\":\nFormat error!", value], @"OK") animated:YES completion:nil];
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"You can not set nonce"
+                                            message:[NSString stringWithFormat:@"Wrong generator \"%@\"\nFormat error!", value]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {}]];
+
+        [self presentViewController:alertController animated:YES completion:nil];
+        // return
         return;
     } else {
         UIAlertController *alertController =
@@ -439,39 +336,34 @@ bool vaildGenerator(NSString *generator) {
 }
 
 - (void)setgenerator {
-    // Nonce Info
     if (getuid() != 0) {
         setuid(0);
     }
 
     if (getuid() != 0) {
-        printf("Can't set uid as 0.\n");
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:@"You can not set nonce"
+                                            message:@"Status: mobile"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {}]];
+
+        [self presentViewController:alertController animated:YES completion:nil];
+        // return
+        return;
     }
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        uint8_t entangled_nonce[CC_SHA384_DIGEST_LENGTH];
-        bool entangled;
-        uint64_t nonce;
-        if (dimentio_init(0, NULL, NULL) == KERN_SUCCESS) {
-            char *generator = (char *)calloc(19, sizeof(char));
-            char *setnonce = (char *)[self.valueStr UTF8String];
-            strcpy(generator, setnonce);
-            sscanf(generator, "0x%016" PRIX64, &nonce);
-            free(generator);
-            if (dimentio(&nonce, true, entangled_nonce, &entangled) == KERN_SUCCESS) {
-                printf("Set nonce to 0x%016" PRIX64 "\n", nonce);
-                if (entangled) {
-                    printf("entangled_nonce: ");
-                    for (size_t i = 0; i < MIN(sizeof(entangled_nonce), 32); ++i) {
-                        printf("%02" PRIX8, entangled_nonce[i]);
-                    }
-                    putchar('\n');
-                }
-            }
-            dimentio_term();
-        }
+        unlock_nvram(&iboot_in);
+
+        char *setnonce = (char *)[self.valueStr UTF8String];
+
+        set_generator(setnonce);
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            // Nonce Info
+            // Nonce Info change
             self.nonce.text = [self getGenerator];
         });
     });

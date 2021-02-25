@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dwo-d8-Ezl">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -68,7 +67,7 @@
                     <connections>
                         <outlet property="btn" destination="xds-cB-GZE" id="E3z-dT-zK9"/>
                         <outlet property="status" destination="idt-qe-xQO" id="TGt-Zz-PSu"/>
-                        <outlet property="system1" destination="fga-r5-rKQ" id="CPC-S0-LnL"/>
+                        <outlet property="system" destination="fga-r5-rKQ" id="nv5-3V-K2s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -170,7 +169,7 @@
                     <tabBarItem key="tabBarItem" title="NONCE" id="euj-3q-1Ts" userLabel="NONCE"/>
                     <connections>
                         <outlet property="nonce" destination="qjz-ze-UIO" id="Kmg-BC-LMn"/>
-                        <outlet property="system2" destination="oQJ-jk-mT7" id="eO4-PU-Dke"/>
+                        <outlet property="system" destination="oQJ-jk-mT7" id="hv2-FW-Okl"/>
                         <outlet property="textField" destination="sZU-Lv-nIe" id="0dG-aa-ImS"/>
                     </connections>
                 </viewController>
@@ -248,7 +247,7 @@
                     <tabBarItem key="tabBarItem" title="INFO" id="HU3-ka-FuR" userLabel="INFO"/>
                     <connections>
                         <outlet property="ecid" destination="5No-Ak-SSf" id="3oz-e5-MHB"/>
-                        <outlet property="system3" destination="RI1-yV-eyd" id="J0g-VX-dg9"/>
+                        <outlet property="system" destination="RI1-yV-eyd" id="nag-j4-4us"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GwY-es-faa" sceneMemberID="firstResponder"/>
