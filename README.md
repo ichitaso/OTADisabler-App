@@ -2,11 +2,11 @@
 Disable OTA Update for iOS & iPadOS for 14 - 14.3 (Non Jailbreak devices)
 
 ## Support Devices
-- iOS 13-14.3 (confirmed on iOS 14.1 and above)
+- iOS 14.0-14.3 (confirmed on iOS 14.1 and above)
 - A9-A14
 
 ## WARNING
-**Run it at your own risk.**
+**Use it on your own risk.**
 
 ## Description & IPA Download
 <ul>
@@ -19,6 +19,7 @@ Disable OTA Update for iOS & iPadOS for 14 - 14.3 (Non Jailbreak devices)
 <ul>
   <li> <a href="https://github.com/ModernPwner/cicuta_virosa" target="_blank">ModernPwner/cicuta_virosa</a></li>
   <li> <a href="https://github.com/brandonplank/PlankFilza" target="_blank">brandonplank/PlankFilza</a></li>
+  <li><a href="https://github.com/dayt0n/kairos" target="_blank"> dayt0n/kairos</a></li>
 </ul>
 
 ## License
