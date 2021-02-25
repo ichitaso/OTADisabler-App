@@ -62,7 +62,7 @@
                             <constraint firstItem="KD8-OV-edi" firstAttribute="trailing" secondItem="fga-r5-rKQ" secondAttribute="trailing" constant="20" id="ylO-mq-6n6"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="OTA" id="4qC-3Q-yKA"/>
+                    <tabBarItem key="tabBarItem" title="OTA" image="cloud" catalog="system" id="4qC-3Q-yKA"/>
                     <navigationItem key="navigationItem" id="vr9-fS-Ch8"/>
                     <connections>
                         <outlet property="btn" destination="xds-cB-GZE" id="E3z-dT-zK9"/>
@@ -166,7 +166,7 @@
                             <constraint firstItem="sZU-Lv-nIe" firstAttribute="centerX" secondItem="jUX-NO-4kI" secondAttribute="centerX" id="s8a-GI-Eb4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="NONCE" id="euj-3q-1Ts" userLabel="NONCE"/>
+                    <tabBarItem key="tabBarItem" title="NONCE" image="applelogo" catalog="system" id="euj-3q-1Ts" userLabel="NONCE"/>
                     <connections>
                         <outlet property="nonce" destination="qjz-ze-UIO" id="Kmg-BC-LMn"/>
                         <outlet property="system" destination="oQJ-jk-mT7" id="hv2-FW-Okl"/>
@@ -185,7 +185,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Infomation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbw-mg-Szx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Infomation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbw-mg-Szx">
                                 <rect key="frame" x="20" y="74" width="374" height="47"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="39"/>
                                 <nil key="textColor"/>
@@ -200,14 +200,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8s3-Bi-hw9" userLabel="Copy">
-                                <rect key="frame" x="159.5" y="327" width="95" height="36"/>
+                                <rect key="frame" x="159.5" y="301" width="95" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Copy ECID"/>
                                 <connections>
                                     <action selector="copyEcidValue:" destination="Ikv-ct-1J4" eventType="touchUpInside" id="RUc-O7-0c0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SYSTEM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RI1-yV-eyd" userLabel="System3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="SYSTEM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RI1-yV-eyd" userLabel="System3">
                                 <rect key="frame" x="20" y="129" width="374" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="374" id="p8F-1V-6BE"/>
@@ -216,8 +216,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device Model: Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQ9-TZ-La9" userLabel="Model">
+                                <rect key="frame" x="122" y="189.5" width="170" height="20.5"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="bTd-H2-eTZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ECID: Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5No-Ak-SSf" userLabel="ECID">
-                                <rect key="frame" x="122" y="266" width="170" height="21"/>
+                                <rect key="frame" x="122" y="250" width="170" height="21"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="R6E-6C-ZGC"/>
@@ -231,22 +241,25 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GK4-gY-uUP" firstAttribute="centerX" secondItem="Mjj-Zp-Hvw" secondAttribute="centerX" id="5hW-9q-HbN"/>
-                            <constraint firstItem="5No-Ak-SSf" firstAttribute="top" secondItem="5WF-DX-niG" secondAttribute="top" constant="266" id="CZN-q5-Y8b"/>
+                            <constraint firstItem="5No-Ak-SSf" firstAttribute="top" secondItem="5WF-DX-niG" secondAttribute="top" constant="250" id="CZN-q5-Y8b"/>
                             <constraint firstItem="Xbw-mg-Szx" firstAttribute="leading" secondItem="Mjj-Zp-Hvw" secondAttribute="leading" constant="20" id="II0-lF-tCI"/>
-                            <constraint firstItem="8s3-Bi-hw9" firstAttribute="top" secondItem="5No-Ak-SSf" secondAttribute="bottom" constant="40" id="Ivj-4k-LpG"/>
+                            <constraint firstItem="8s3-Bi-hw9" firstAttribute="top" secondItem="5No-Ak-SSf" secondAttribute="bottom" constant="30" id="Ivj-4k-LpG"/>
                             <constraint firstItem="5No-Ak-SSf" firstAttribute="centerX" secondItem="5WF-DX-niG" secondAttribute="centerX" id="SpN-tW-YhU"/>
                             <constraint firstItem="Xbw-mg-Szx" firstAttribute="top" secondItem="Mjj-Zp-Hvw" secondAttribute="top" constant="30" id="WhA-dg-LjC"/>
+                            <constraint firstItem="kQ9-TZ-La9" firstAttribute="top" secondItem="RI1-yV-eyd" secondAttribute="bottom" constant="40" id="aXA-de-cUZ"/>
                             <constraint firstItem="RI1-yV-eyd" firstAttribute="leading" secondItem="Mjj-Zp-Hvw" secondAttribute="leading" constant="20" id="bIK-ey-6Qi"/>
                             <constraint firstItem="Mjj-Zp-Hvw" firstAttribute="trailing" secondItem="Xbw-mg-Szx" secondAttribute="trailing" constant="20" id="hxy-xG-MDM"/>
                             <constraint firstItem="Mjj-Zp-Hvw" firstAttribute="trailing" secondItem="RI1-yV-eyd" secondAttribute="trailing" constant="20" id="jIE-Oq-Wvs"/>
                             <constraint firstItem="RI1-yV-eyd" firstAttribute="top" secondItem="Xbw-mg-Szx" secondAttribute="bottom" constant="8" symbolic="YES" id="qrX-ae-cIr"/>
+                            <constraint firstItem="kQ9-TZ-La9" firstAttribute="centerX" secondItem="5WF-DX-niG" secondAttribute="centerX" id="u9B-gQ-hSz"/>
                             <constraint firstItem="GK4-gY-uUP" firstAttribute="centerY" secondItem="Mjj-Zp-Hvw" secondAttribute="centerY" id="uni-ZH-shl"/>
                             <constraint firstItem="8s3-Bi-hw9" firstAttribute="centerX" secondItem="Mjj-Zp-Hvw" secondAttribute="centerX" id="wa8-Lg-ith"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="INFO" id="HU3-ka-FuR" userLabel="INFO"/>
+                    <tabBarItem key="tabBarItem" title="INFO" image="info.circle" catalog="system" id="HU3-ka-FuR" userLabel="INFO"/>
                     <connections>
                         <outlet property="ecid" destination="5No-Ak-SSf" id="3oz-e5-MHB"/>
+                        <outlet property="model" destination="kQ9-TZ-La9" id="j1C-yR-rMj"/>
                         <outlet property="system" destination="RI1-yV-eyd" id="nag-j4-4us"/>
                     </connections>
                 </viewController>
@@ -256,6 +269,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="applelogo" catalog="system" width="128" height="121"/>
+        <image name="cloud" catalog="system" width="128" height="87"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

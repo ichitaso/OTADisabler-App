@@ -88,11 +88,12 @@ const char *get_generator() {
 @interface ViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *system;
-@property (weak, nonatomic) IBOutlet UILabel *ecid;
 @property (weak, nonatomic) IBOutlet UILabel *status;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 @property (weak, nonatomic) IBOutlet UILabel *nonce;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UILabel *ecid;
+@property (weak, nonatomic) IBOutlet UILabel *model;
 @property (nonatomic, copy) NSString *valueStr;
 
 @end
@@ -115,13 +116,6 @@ const char *get_generator() {
 
 static CFStringRef (*$MGCopyAnswer)(CFStringRef);
 
-UIAlertController *alert(NSString *alertTitle, NSString *alertMessage, NSString *actionTitle) {
-    UIAlertController *theAlert = [UIAlertController alertControllerWithTitle:alertTitle message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-    [theAlert addAction:defaultAction];
-    return theAlert;
-}
-
 bool vaildGenerator(NSString *generator) {
     if ([generator length] != 18 || [generator characterAtIndex:0] != '0' || [generator characterAtIndex:1] != 'x') {
         return false;
@@ -141,6 +135,10 @@ bool vaildGenerator(NSString *generator) {
     // Do any additional setup after loading the view.
     // System info
     NSString *systemStr = [NSString stringWithFormat:@"%@ %@ %@ - %@",[[UIDeviceHardware alloc] platform],[[UIDevice currentDevice] systemName],[[UIDevice currentDevice] systemVersion],VERSION];
+
+
+    void *gestalt = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_GLOBAL | RTLD_LAZY);
+    $MGCopyAnswer = dlsym(gestalt, "MGCopyAnswer");
 
     // System Info
     self.system.text = systemStr;
@@ -168,6 +166,7 @@ bool vaildGenerator(NSString *generator) {
     } else if (self.view.tag == 999) {
         // ECID Section
         self.ecid.text = [NSString stringWithFormat:@"ECID: %@", [self ecidHexValue]];
+        self.model.text = [NSString stringWithFormat:@"Device Model: %@", [self modelValue]];
     } else {
         if (access(PROFILE1, F_OK != 0)) {
             self.status.text = @"OTA: Enabled";
@@ -308,8 +307,8 @@ bool vaildGenerator(NSString *generator) {
 
     if (!vaildGenerator(value)) {
         UIAlertController *alertController =
-        [UIAlertController alertControllerWithTitle:@"You can not set nonce"
-                                            message:[NSString stringWithFormat:@"Wrong generator \"%@\"\nFormat error!", value]
+        [UIAlertController alertControllerWithTitle:@"Wrong Value"
+                                            message:[NSString stringWithFormat:@"\"%@\"\nFormat error!", value]
                                      preferredStyle:UIAlertControllerStyleAlert];
 
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
@@ -394,22 +393,34 @@ bool vaildGenerator(NSString *generator) {
                                         message:[self ecidHexValue]
                                  preferredStyle:UIAlertControllerStyleAlert];
 
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action) {}]];
-
-    [alertController addAction:[UIAlertAction actionWithTitle:@"ECID (Hex)"
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Copy (Hex)"
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
         [UIPasteboard generalPasteboard].string = [self ecidHexValue];
     }]];
 
+    if ([self.ecid.text isEqualToString:@"ECID: Secret"]) {
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Show ECID"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+            self.ecid.text = [NSString stringWithFormat:@"ECID: %@", [self ecidHexValue]];
+        }]];
+    } else {
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Hide ECID"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+            self.ecid.text = @"ECID: Secret";
+        }]];
+    }
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {}]];
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (NSString *)ecidValue {
-    void *gestalt = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_GLOBAL | RTLD_LAZY);
-    $MGCopyAnswer = dlsym(gestalt, "MGCopyAnswer");
     CFStringRef ecid = (CFStringRef)$MGCopyAnswer(CFSTR("UniqueChipID"));
     if ([[[UIDeviceHardware alloc] platform] isEqualToString:@"x86_64"]) {
         return @"ecidvalue";
@@ -421,6 +432,12 @@ bool vaildGenerator(NSString *generator) {
     return [NSString stringWithFormat:@"%lX", (unsigned long)[[self ecidValue] integerValue]];
 }
 
+- (NSString *)modelValue {
+    CFStringRef boardId = (CFStringRef)$MGCopyAnswer(CFSTR("HWModelStr"));
+    if (!boardId) return @"NULL";
+    return [NSString stringWithFormat:@"%@", (__bridge NSString *)boardId];;
+}
+
 - (IBAction)openSafari:(UIButton *)sender {
     UIAlertController *alertController = [UIAlertController
                                           alertControllerWithTitle:@"Useful Site"
@@ -428,32 +445,28 @@ bool vaildGenerator(NSString *generator) {
                                           preferredStyle:UIAlertControllerStyleActionSheet];
 
     [alertController addAction:[UIAlertAction actionWithTitle:@"SHSH Host" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        double delayInSeconds = 0.8;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self openURLInBrowser:@"https://shsh.host/"];
         });
     }]];
 
     [alertController addAction:[UIAlertAction actionWithTitle:@"TSS Saver" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        double delayInSeconds = 0.8;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self openURLInBrowser:@"https://tsssaver.1conan.com/v2/"];
         });
     }]];
 
     [alertController addAction:[UIAlertAction actionWithTitle:@"The iPhone Wiki" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        double delayInSeconds = 0.8;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self openURLInBrowser:@"https://www.theiphonewiki.com/"];
         });
     }]];
 
     [alertController addAction:[UIAlertAction actionWithTitle:@"My Repo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        double delayInSeconds = 0.8;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self openURLInBrowser:@"https://cydia.ichitaso.com"];
         });

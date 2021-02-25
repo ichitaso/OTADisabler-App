@@ -74,23 +74,37 @@ static void initializer(void) {
         while (main.presentedViewController != NULL && ![main.presentedViewController isKindOfClass: [UIAlertController class]]) {
             main = main.presentedViewController;
         }
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Exploiting"
-                                                                       message:@"This will take some time..."
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        [main presentViewController:alert animated:YES completion:^{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                setgid(0);
-                uint32_t gid = getgid();
-                NSLog(@"getgid() returns %u\n", gid);
-                setuid(0);
-                uint32_t uid = getuid();
-                NSLog(@"getuid() returns %u\n", uid);
-                if (uid != 0 && gid != 0) {
-                    start();
-                }
-                free(redeem_racers);
-                [alert dismissViewControllerAnimated:YES completion:^{}];
-            });
-        }];
+        setgid(0);
+        uint32_t gid = getgid();
+        NSLog(@"getgid() returns %u\n", gid);
+        setuid(0);
+        uint32_t uid = getuid();
+        NSLog(@"getuid() returns %u\n", uid);
+        if (uid != 0 && gid != 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Status: mobile"
+                                                                           message:@"Do you want to jailbreak?"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+
+            [alert addAction:[UIAlertAction actionWithTitle:@"Cancel"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action) {}]];
+
+            [alert addAction:[UIAlertAction actionWithTitle:@"Jailbreak"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action) {
+                UIAlertController *jailbreak = [UIAlertController alertControllerWithTitle:@"Exploiting"
+                                                                               message:@"This will take some time..."
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                [main presentViewController:jailbreak animated:YES completion:^{
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        start();
+                        free(redeem_racers);
+                        [jailbreak dismissViewControllerAnimated:YES completion:^{}];
+                    });
+                }];
+            }]];
+
+            [main presentViewController:alert animated:YES completion:nil];
+        }
     });
 }
